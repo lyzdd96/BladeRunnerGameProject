@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{5DBD7BEE-C477-F2FA-1AF8-6F4E1051B85E}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerAttackController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="6" Column="1" />
+      <File FileName="Assets/Scripts/Player/CharacterController2D.cs" Line="54" Column="63" />
+      <File FileName="Assets/Scripts/Camara/MainSceneCameraController.cs" />
+      <File FileName="Assets/Scripts/Bullets/NewMonoBehaviour.cs" Line="70" Column="73" />
+      <File FileName="Assets/Scripts/Bullets/Player_Bullet1.cs" Line="19" Column="6" />
+      <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" Line="6" Column="75" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="2020GameProject" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Bullets" expanded="True" />
+                <Node name="Player" expanded="True">
+                  <Node name="PlayerAttackController.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8ac77a51-c255-4024-95c2-3568b892782a" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
