@@ -11,16 +11,12 @@ public class CharacterController2D : MonoBehaviour
 	public LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	public Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	public Transform m_CeilingCheck;                            // A position marking where to check for ceilings
-	public Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
+	public Collider2D m_CrouchDisableCollider;              // A collider that will be disabled when crouching
+	public ContactFilter2D groundContactFilter;  // for ground detection
 
-	const float k_GroundedRadius = 0.05f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;            // Whether or not the player is grounded.
+	//const float k_GroundedRadius = 0.04f; // Radius of the overlap circle to determine if grounded
+	
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
-
-
-	private Rigidbody2D m_Rigidbody2D;
-	public bool m_FacingRight { get; set; } = true;  // For determining which way the player is currently facing.
-	private Vector3 m_Velocity = Vector3.zero;
 
 	[Header("Events")]
 	[Space]
@@ -28,9 +24,15 @@ public class CharacterController2D : MonoBehaviour
 
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
-
 	public BoolEvent OnCrouchEvent;
+
+
+	private Rigidbody2D m_Rigidbody2D;
+	public bool m_FacingRight { get; set; } = true;  // For determining which way the player is currently facing.
+	private Vector3 m_Velocity = Vector3.zero;
 	private bool m_wasCrouching = false;
+	private bool m_Grounded;            // Whether or not the player is grounded.
+	private float groundCheckTimer = 0;  // a timer for ground check, to avoid ground detection when the player just starts jumping
 
 	private void Awake()
 	{
@@ -45,9 +47,10 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = m_Grounded;
-		m_Grounded = false;
+		//bool wasGrounded = m_Grounded;
+		//m_Grounded = false;
 
+		/*
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This will be done using layers ("ground" layer for the terrain collider object)
 		// Note: the k_GroundedRadius has to be precise such that the ray circle will exactly touch the ground.
@@ -63,10 +66,35 @@ public class CharacterController2D : MonoBehaviour
 				if (!wasGrounded)
                 {
 					OnLandEvent.Invoke();
-					//Debug.Log("G");
+					Debug.Log(colliders[i].tag);
 				}
 			}
 		}
+		*//*
+		if(m_Rigidbody2D.IsTouching(groundContactFilter))
+        {
+			m_Grounded = true;
+			if (!wasGrounded)
+			{
+				OnLandEvent.Invoke();
+				Debug.Log("G");
+			}
+		} */
+
+		
+		m_Grounded = m_Rigidbody2D.IsTouching(groundContactFilter);
+
+		groundCheckTimer += Time.deltaTime;
+		// only call OnLandEvent after 0.1s of the jumping action (reset timer everytime the player jumps)
+		if (groundCheckTimer >= 0.1f)
+        {
+			if (m_Grounded)
+			{
+				OnLandEvent.Invoke();
+			}
+		}
+
+
 
 		//Debug.DrawRay(m_GroundCheck.position, new Vector3(0, -k_GroundedRadius, m_GroundCheck.position.z), Color.green);
 
@@ -76,7 +104,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump)
+	public void Move(float move, bool crouch, bool jump, bool backJump)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -91,7 +119,6 @@ public class CharacterController2D : MonoBehaviour
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
 		{
-
 			// If crouching
 			if (crouch)
 			{
@@ -144,7 +171,16 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+
+			groundCheckTimer = 0;
+			groundCheckTimer += Time.deltaTime;  // update timer
 		}
+		/*
+		// If the player is backJumping
+		if (m_Grounded && backJump)
+		{
+            this.backJump(1250, 200);
+		}*/
 	}
 
 
@@ -157,5 +193,16 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	public void backJump(float backForce, float verticalForce)
+    {
+		Vector2 backJumpForce = new Vector2();
+		backJumpForce.x = this.m_FacingRight ? -backForce : backForce;  // define the horizontal force sign with the player facing direction
+		backJumpForce.y = verticalForce;
+		// Add a force to the player to back jump
+		m_Grounded = false;
+		m_Rigidbody2D.AddForce(backJumpForce);
+
 	}
 }

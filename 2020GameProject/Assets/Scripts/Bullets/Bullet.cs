@@ -12,6 +12,9 @@ public abstract class Bullet : MonoBehaviour
     private CapsuleCollider2D bulletCollider;      //The collider component attached to this object(the bullet game object which has a script that derives this abstract class).
     private Rigidbody2D rb;                //The Rigidbody2D component attached to this object(the bullet game object which has a script that derives this abstract class).
 
+    private IEnumerator coroutine;  // store the coroutine in a field variable
+    private float speedFactor = 70f;
+
 
     // Use this for initialization
     //Protected, virtual functions can be overridden by inheriting classes.
@@ -37,10 +40,39 @@ public abstract class Bullet : MonoBehaviour
         Vector3 destination = currentPosition + direction * maxRange;
 
         // start SmoothMovement co-routine passing in the Vector2 end as destination
-        StartCoroutine(SmoothMovement(destination));
+        this.coroutine = ConstantMovement(destination);
+        StartCoroutine(coroutine);
 
     }
 
+    //Co-routine for moving units from current position to the destination, takes a parameter destination to specify where to move to.
+    protected IEnumerator ConstantMovement(Vector3 destination)
+    {
+        //Calculate the remaining distance to move based on the square magnitude of the difference between current position and end parameter. 
+        //Square magnitude is used instead of magnitude because it's computationally cheaper.
+        float sqrRemainingDistance = (transform.position - destination).sqrMagnitude;
+
+        // calculate the moving direction
+        Vector3 direction = (destination - (Vector3)rb.position).normalized;
+
+        //While that distance is greater than a very small amount (Epsilon, almost zero):
+        while (sqrRemainingDistance > 0.05f)
+        {
+            // set a constant velocity for the bullet
+            rb.velocity = direction * flyingSpeed * Time.deltaTime * speedFactor;
+            
+
+            //Recalculate the remaining distance after moving.
+            sqrRemainingDistance = (transform.position - destination).sqrMagnitude;
+
+            // Yielding of any type, including null, results in the execution coming back on a later frame (next frame)
+            //Return and loop until sqrRemainingDistance is close enough to zero to end the function
+            yield return null;
+        }
+
+        // when the co-routine for movement is done, destroy this bullet
+        Destroy(this.gameObject);
+    }
 
     //Co-routine for moving units from one space to next, takes a parameter destination to specify where to move to.
     protected IEnumerator SmoothMovement(Vector3 destination)
@@ -66,9 +98,21 @@ public abstract class Bullet : MonoBehaviour
             //Return and loop until sqrRemainingDistance is close enough to zero to end the function
             yield return null;
         }
-        
+
         // when the co-routine for movement is done, destroy this bullet
         Destroy(this.gameObject);
+    }
+
+    /// <summary>
+    /// Funtion to stop the motion of bullet
+    /// </summary>
+    protected void stop()
+    {
+        StopCoroutine(this.coroutine);
+        rb.velocity = Vector3.zero;
+        // destroy this bullet
+        Destroy(this.gameObject, 0.4f);
+
     }
 
 }

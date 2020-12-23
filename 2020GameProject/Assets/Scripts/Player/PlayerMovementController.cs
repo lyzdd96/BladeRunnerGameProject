@@ -14,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
 	private float horizontalMove = 0f;
 	private bool isJumping = false;
 	private bool isCrouching = false;
+	private bool isBackJumping = false;
 
 	// Update is called once per frame
 	void Update()
@@ -52,9 +53,10 @@ public class PlayerMovementController : MonoBehaviour
 			animator.SetBool("IsShooting", false);
 		}
 
-		if (Input.GetButtonDown("Fire2"))
+		if (Input.GetButtonDown("BackJump"))
 		{
-			animator.SetTrigger("IsHurt");
+			animator.SetTrigger("IsBackJumping");
+			isBackJumping = true;
 		}
 
 
@@ -65,8 +67,9 @@ public class PlayerMovementController : MonoBehaviour
 	void FixedUpdate()
 	{
 		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping);
+		controller.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping, isBackJumping);
 		isJumping = false;
+		isBackJumping = false;
 	}
 
 
