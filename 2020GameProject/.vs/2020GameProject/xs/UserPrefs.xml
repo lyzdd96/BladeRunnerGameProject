@@ -1,13 +1,11 @@
 ﻿<Properties StartupConfiguration="{5DBD7BEE-C477-F2FA-1AF8-6F4E1051B85E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/LevelLoader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerMovementController.cs">
     <Files>
       <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="10" Column="27" />
       <File FileName="Assets/Scripts/Player/CharacterController2D.cs" Line="38" Column="3" />
       <File FileName="Assets/Scripts/Camara/MainSceneCameraController.cs" />
-      <File FileName="Assets/Scripts/Bullets/NewMonoBehaviour.cs" Line="19" Column="35" />
-      <File FileName="Assets/Scripts/Bullets/Player_Bullet1.cs" Line="48" Column="10" />
+      <File FileName="Assets/Scripts/Bullets/Player_Bullet1.cs" />
       <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" Line="41" Column="18" />
-      <File FileName="Assets/LevelLoader.cs" Line="7" Column="8" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,9 +13,11 @@
           <Node name="2020GameProject" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Player" expanded="True" />
+                <Node name="Bullets" expanded="True" />
+                <Node name="Player" expanded="True">
+                  <Node name="PlayerMovementController.cs" selected="True" />
+                </Node>
               </Node>
-              <Node name="LevelLoader.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -26,7 +26,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8ac77a51-c255-4024-95c2-3568b892782a" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8bb35605-64ea-4662-a12a-cf7eb3b9e328" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
