@@ -207,6 +207,7 @@ MonoBehaviour:
     type: 3}
   muzzlePoint: {fileID: 1696825744}
   shootingCoolDown: 0.2
+  skill1CoolDown: 5
 --- !u!95 &101521714087224469
 Animator:
   serializedVersion: 3

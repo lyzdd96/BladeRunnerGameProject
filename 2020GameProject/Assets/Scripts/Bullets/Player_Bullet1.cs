@@ -44,7 +44,7 @@ public class Player_Bullet1 : Bullet
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Monster")
+        if (collision.gameObject.tag == "Monster" || collision.gameObject.tag == "Ground")
         {
             animator.SetTrigger("IsHit");
             stop();  // stop the motion of bullet when hits a monster

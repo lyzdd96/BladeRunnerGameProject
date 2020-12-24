@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\Bullets\Player_Bullet1.cs" />
     <Compile Include="Assets\Scripts\Camara\MainSceneCameraController.cs" />
+    <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAttackController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovementController.cs" />

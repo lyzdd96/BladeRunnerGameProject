@@ -13,7 +13,7 @@ public abstract class Bullet : MonoBehaviour
     private Rigidbody2D rb;                //The Rigidbody2D component attached to this object(the bullet game object which has a script that derives this abstract class).
 
     private IEnumerator coroutine;  // store the coroutine in a field variable
-    private float speedFactor = 70f;
+    //private float speedFactor = 70f;
 
 
     // Use this for initialization
@@ -54,14 +54,12 @@ public abstract class Bullet : MonoBehaviour
 
         // calculate the moving direction
         Vector3 direction = (destination - (Vector3)rb.position).normalized;
+        // set a constant velocity for the bullet
+        rb.velocity = direction * flyingSpeed;  //Time.deltaTime * speedFactor
 
         //While that distance is greater than a very small amount (Epsilon, almost zero):
         while (sqrRemainingDistance > 0.05f)
         {
-            // set a constant velocity for the bullet
-            rb.velocity = direction * flyingSpeed * Time.deltaTime * speedFactor;
-            
-
             //Recalculate the remaining distance after moving.
             sqrRemainingDistance = (transform.position - destination).sqrMagnitude;
 

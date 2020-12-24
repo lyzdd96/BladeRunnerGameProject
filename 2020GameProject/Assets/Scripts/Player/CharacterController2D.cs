@@ -31,7 +31,7 @@ public class CharacterController2D : MonoBehaviour
 	public bool m_FacingRight { get; set; } = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	private bool m_wasCrouching = false;
-	private bool m_Grounded;            // Whether or not the player is grounded.
+	public bool m_Grounded { get; set; }            // Whether or not the player is grounded.
 	private float groundCheckTimer = 0;  // a timer for ground check, to avoid ground detection when the player just starts jumping
 
 	private void Awake()
