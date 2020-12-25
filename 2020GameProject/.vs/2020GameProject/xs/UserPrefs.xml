@@ -1,17 +1,22 @@
 ﻿<Properties StartupConfiguration="{5DBD7BEE-C477-F2FA-1AF8-6F4E1051B85E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerMovementController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ExternalPackage/unity-wave-function-collapse/README.md">
     <Files>
-      <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="10" Column="27" />
-      <File FileName="Assets/Scripts/Player/CharacterController2D.cs" Line="38" Column="3" />
+      <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="15" Column="24" />
+      <File FileName="Assets/Scripts/Player/CharacterController2D.cs" />
       <File FileName="Assets/Scripts/Camara/MainSceneCameraController.cs" />
       <File FileName="Assets/Scripts/Bullets/Player_Bullet1.cs" />
-      <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" Line="41" Column="18" />
+      <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" />
+      <File FileName="Assets/ExternalPackage/unity-wave-function-collapse/TilePainter.cs" Line="280" Column="1" />
+      <File FileName="Assets/ExternalPackage/unity-wave-function-collapse/README.md" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="2020GameProject" expanded="True">
             <Node name="Assets" expanded="True">
+              <Node name="ExternalPackage" expanded="True">
+                <Node name="unity-wave-function-collapse" expanded="True" />
+              </Node>
               <Node name="Scripts" expanded="True">
                 <Node name="Bullets" expanded="True" />
                 <Node name="Player" expanded="True">

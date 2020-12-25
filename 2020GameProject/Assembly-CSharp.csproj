@@ -66,6 +66,14 @@
   <ItemGroup>
     <Compile Include="Assets\ExternalAssets\CyberPunk\Scripts\Done_BGScroller.cs" />
     <Compile Include="Assets\ExternalAssets\CyberPunk\Scripts\Perspective2DSortMode.cs" />
+    <Compile Include="Assets\ExternalPackage\unity-wave-function-collapse\OverlapWFC.cs" />
+    <Compile Include="Assets\ExternalPackage\unity-wave-function-collapse\SimpleTiledWFC.cs" />
+    <Compile Include="Assets\ExternalPackage\unity-wave-function-collapse\TilePainter.cs" />
+    <Compile Include="Assets\ExternalPackage\unity-wave-function-collapse\Training.cs" />
+    <Compile Include="Assets\ExternalPackage\unity-wave-function-collapse\impl\Model.cs" />
+    <Compile Include="Assets\ExternalPackage\unity-wave-function-collapse\impl\OverlappingModel.cs" />
+    <Compile Include="Assets\ExternalPackage\unity-wave-function-collapse\impl\SimpleTiledModel.cs" />
+    <Compile Include="Assets\ExternalPackage\unity-wave-function-collapse\impl\Stuff.cs" />
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\Bullets\Player_Bullet1.cs" />
     <Compile Include="Assets\Scripts\Camara\MainSceneCameraController.cs" />
@@ -73,6 +81,7 @@
     <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAttackController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovementController.cs" />
+    <None Include="Assets\ExternalPackage\unity-wave-function-collapse\LICENSE.txt" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.9f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
