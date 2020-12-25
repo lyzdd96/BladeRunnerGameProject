@@ -31,8 +31,10 @@ public class CharacterController2D : MonoBehaviour
 	public bool m_FacingRight { get; set; } = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	private bool m_wasCrouching = false;
-	public bool m_Grounded { get; set; }            // Whether or not the player is grounded.
+	public bool m_Grounded { get; set; } = true;          // Whether or not the player is grounded.
 	private float groundCheckTimer = 0;  // a timer for ground check, to avoid ground detection when the player just starts jumping
+	private bool isJumping = false;
+
 
 	private void Awake()
 	{
@@ -86,11 +88,12 @@ public class CharacterController2D : MonoBehaviour
 
 		groundCheckTimer += Time.deltaTime;
 		// only call OnLandEvent after 0.1s of the jumping action (reset timer everytime the player jumps)
-		if (groundCheckTimer >= 0.1f)
+		if (groundCheckTimer >= 0.1f && isJumping)
         {
 			if (m_Grounded)
 			{
 				OnLandEvent.Invoke();
+				isJumping = false;
 			}
 		}
 
@@ -172,8 +175,8 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
-			groundCheckTimer = 0;
-			groundCheckTimer += Time.deltaTime;  // update timer
+			groundCheckTimer = 0;  // reset timer
+			isJumping = true;
 		}
 		/*
 		// If the player is backJumping
