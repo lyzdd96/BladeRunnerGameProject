@@ -4,12 +4,8 @@ using UnityEngine;
 
 
 // Class to transform the user's controls to player attacks
-public class PlayerAttackController : MonoBehaviour
+public class PlayerAttackController : AttackController
 {
-    public Player player;
-    public Animator animator;
-
-    public GameObject bulletPrefab;
 
     [Header("Shooting values")]
     public Transform muzzlePoint;  // the muzzle point of weapon
@@ -18,54 +14,75 @@ public class PlayerAttackController : MonoBehaviour
 
     private float fireCoolDownTimer = 0;  // timer for the shooting cooldown
     private float spawnRange = 0.1f;  // the vertical spawan range for bullets (to add some randomness to the bullets spawning position)
+ 
+    private Skill shootingSkill;
 
     // skill1
     private float skill1CoolDownTimer = 0;  // timer for the skill1 cooldown
-    private int numBullets_skill1 = 12;  // number of bullets shooting by skill1
+   
 
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         fireCoolDownTimer = shootingCoolDown;
         skill1CoolDownTimer = skill1CoolDown;
+        this.currentAttack = this.attacks[this.attackSelected];
+        this.skills.Add(new ShootingSkill(this.currentAttack, skill1CoolDown));
+        shootingSkill = this.skills[0];
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        fire();  // handle the fire action
-        skill1();  // handle the skill1 action
+        // update cooldown
+        this.updateCooldown();
+
+        this.spawnAttack();
     }
 
+    private void updateCooldown() {
+        fireCoolDownTimer += Time.deltaTime;
+        skill1CoolDownTimer += Time.deltaTime;
+    }
+
+    /// <summary>
+    /// Function to read input and parameters from the model to execute an attack from list of attacks
+    /// </summary>
+    protected override void spawnAttack() {
+        if (Input.GetButtonDown("Fire") || Input.GetButton("Fire"))
+        {
+
+            this.fire();
+        } else if (Input.GetButtonUp("Fire"))
+
+        {
+            animator.SetBool("IsShooting", false);
+        }
+        // when the skill1 button is pressed and the player is not on the ground
+        if (Input.GetButtonDown("Skill1") && !character.isGrounded)
+        {
+            this.skill1();
+        }
+    }
 
     /// <summary>
     /// Function to handle the normal fire action of player
     /// </summary>
     private void fire()
     {
-        fireCoolDownTimer += Time.deltaTime;  // update cooldown
+        animator.SetBool("IsShooting", true);
 
-        // when the button is pressed or held
-        if (Input.GetButtonDown("Fire") || Input.GetButton("Fire"))
+        // if cooldown is terminated, player can shoot
+        if (fireCoolDownTimer > shootingCoolDown)
+
         {
-            animator.SetBool("IsShooting", true);
-
-            // if cooldown is terminated, player can shoot
-            if (fireCoolDownTimer > shootingCoolDown)
-            {
-                // add some randomness to the bullets spawning y-position
-                Vector3 spawnPos = new Vector3(this.muzzlePoint.position.x, Random.Range(this.muzzlePoint.position.y - spawnRange, this.muzzlePoint.position.y + spawnRange), this.muzzlePoint.transform.position.z);
-                GameObject bullet = Instantiate(bulletPrefab, spawnPos, this.transform.rotation);  // generate a bullet
-
-                // set the shooting direction of this bullet depending on the player facing direction
-                bullet.GetComponent<Player_Bullet1>().setDirection(this.player.isFacingRight ? Vector3.right : Vector3.left);
-                fireCoolDownTimer = 0;
-            }
-        }
-        else if (Input.GetButtonUp("Fire"))
-        {
-            animator.SetBool("IsShooting", false);
+            // add some randomness to the bullets spawning y-position
+            Vector3 spawnPos = new Vector3(this.muzzlePoint.position.x, Random.Range(this.muzzlePoint.position.y - spawnRange, this.muzzlePoint.position.y + spawnRange), this.muzzlePoint.transform.position.z);
+            Attack bullet = Instantiate(this.currentAttack, spawnPos, this.transform.rotation);  // generate a bullet
+            // set the shooting direction of this bullet depending on the player facing direction
+            bullet.GetComponent<Attack>().setDirection(this.character.isFacingRight ? Vector3.right : Vector3.left);
+            fireCoolDownTimer = 0;
         }
     }
 
@@ -74,28 +91,14 @@ public class PlayerAttackController : MonoBehaviour
     /// Function to handle the skill1 of player
     /// </summary>
     private void skill1()
-    {
-        skill1CoolDownTimer += Time.deltaTime;  // update cooldown
-
-        // when the skill1 button is pressed and the player is not on the ground
-        if (Input.GetButtonDown("Skill1") && !player.isGrounded)
+    { 
+        
+        // if cooldown is terminated, player can shoot
+        if (skill1CoolDownTimer > shootingSkill.cooldown)
         {
-            // if cooldown is terminated, player can shoot
-            if (skill1CoolDownTimer > skill1CoolDown)
-            {
-                float deltaAngle = 360 / numBullets_skill1;
-                // generate 12 bullets flying from the player (one bullet for each 30 degree around the player)
-                for (int i = 0; i < numBullets_skill1; i++)
-                {
-                    GameObject bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.Euler(0, 0, deltaAngle * i));  // generate a bullet
-
-                    // set the shooting direction of this bullet
-                    bullet.GetComponent<Player_Bullet1>().setDirection(new Vector2(Mathf.Cos(Mathf.Deg2Rad*deltaAngle * i), Mathf.Sin(Mathf.Deg2Rad * deltaAngle * i)));
-                }
-
-
-                skill1CoolDownTimer = 0;
-            }
+            shootingSkill.createSkill(this.transform);
+            skill1CoolDownTimer = 0;
         }
+        
     }
 }

@@ -193,6 +193,17 @@ PrefabInstance:
       propertyPath: thisAnimator
       value: 
       objectReference: {fileID: 1116244114}
+    - target: {fileID: 4914710595056042938, guid: cc644ba1334ea4b92bbe9bd83625967b,
+        type: 3}
+      propertyPath: attacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914710595056042938, guid: cc644ba1334ea4b92bbe9bd83625967b,
+        type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 4497383734388207754, guid: 4061fe785d7ad47e19c3c619e0ce153b,
+        type: 3}
     - target: {fileID: 6542235627710674089, guid: cc644ba1334ea4b92bbe9bd83625967b,
         type: 3}
       propertyPath: m_JumpForce

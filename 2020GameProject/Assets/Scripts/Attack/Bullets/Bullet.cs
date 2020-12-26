@@ -4,11 +4,8 @@ using System.Collections;
 
 // An abstract class for bullets
 // will be inherited by real bullet class
-public abstract class Bullet : MonoBehaviour
+public abstract class Bullet : Attack
 {
-    protected float flyingSpeed;  // the flying speed of bullet
-
-
     private CapsuleCollider2D bulletCollider;      //The collider component attached to this object(the bullet game object which has a script that derives this abstract class).
     private Rigidbody2D rb;                //The Rigidbody2D component attached to this object(the bullet game object which has a script that derives this abstract class).
 
@@ -55,7 +52,7 @@ public abstract class Bullet : MonoBehaviour
         // calculate the moving direction
         Vector3 direction = (destination - (Vector3)rb.position).normalized;
         // set a constant velocity for the bullet
-        rb.velocity = direction * flyingSpeed;  //Time.deltaTime * speedFactor
+        rb.velocity = direction * speed;  //Time.deltaTime * speedFactor
 
         //While that distance is greater than a very small amount (Epsilon, almost zero):
         while (sqrRemainingDistance > 0.05f)
@@ -84,7 +81,7 @@ public abstract class Bullet : MonoBehaviour
         {
             
             //Find a new position proportionally closer to the end, based on the moveTime
-            Vector3 newPostion = Vector3.MoveTowards(rb.position, destination, flyingSpeed * Time.deltaTime);
+            Vector3 newPostion = Vector3.MoveTowards(rb.position, destination, speed * Time.deltaTime);
 
             //Call MovePosition on attached Rigidbody2D and move it to the calculated position.
             rb.MovePosition(newPostion);
