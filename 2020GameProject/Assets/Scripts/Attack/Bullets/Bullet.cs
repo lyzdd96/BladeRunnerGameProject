@@ -4,7 +4,7 @@ using System.Collections;
 
 // An abstract class for bullets
 // will be inherited by real bullet class
-public abstract class Bullet : MonoBehaviour
+public abstract class Bullet : Attack
 {
     protected float flyingSpeed;  // the flying speed of bullet
 
