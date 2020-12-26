@@ -8,22 +8,23 @@ public abstract class AttackController : MonoBehaviour
 {
     public CharacterController2D character;
     public Animator animator;
-    public List<GameObject> attacks = new List<GameObject>();
+    public List<Attack> attacks = new List<Attack>();
+    protected List<Skill> skills = new List<Skill>();
 
     public int attackSelected = 0;
-    protected GameObject currentAttack;
+    protected Attack currentAttack;
     // Start is called before the first frame update
-    void Start() {}
+    protected abstract void Start();
 
     // Update is called once per frame
-    void Update() {}
+    protected abstract void Update();
 
     /// <summary>
     /// Function to read input and parameters from the model to execute an attack from list of attacks
     /// </summary>
-    private void spawnAttack() {}
+    protected abstract void spawnAttack();
 
-    private void changeAttack(int newAttackIndex) {
+    protected virtual void changeAttack(int newAttackIndex) {
         if (newAttackIndex >= 0 && newAttackIndex < attacks.Count) {
             this.attackSelected = newAttackIndex;
             this.currentAttack = this.attacks[this.attackSelected];
