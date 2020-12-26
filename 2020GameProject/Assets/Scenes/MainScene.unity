@@ -204,6 +204,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4497383734388207754, guid: 4061fe785d7ad47e19c3c619e0ce153b,
         type: 3}
+    - target: {fileID: 4914710595056042938, guid: cc644ba1334ea4b92bbe9bd83625967b,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1116244117}
     - target: {fileID: 6542235627710674089, guid: cc644ba1334ea4b92bbe9bd83625967b,
         type: 3}
       propertyPath: m_JumpForce
@@ -789,6 +794,18 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 89477103}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1116244117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6542235627710674089, guid: cc644ba1334ea4b92bbe9bd83625967b,
+    type: 3}
+  m_PrefabInstance: {fileID: 89477103}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116244110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e797d6cfeab9b4ef7808b510043c275b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1572854082
 GameObject:
   m_ObjectHideFlags: 0

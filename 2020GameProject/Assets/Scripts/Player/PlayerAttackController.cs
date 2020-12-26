@@ -27,6 +27,7 @@ public class PlayerAttackController : AttackController
     {
         fireCoolDownTimer = shootingCoolDown;
         skill1CoolDownTimer = skill1CoolDown;
+
         this.currentAttack = this.attacks[this.attackSelected];
         this.skills.Add(new ShootingSkill(this.currentAttack, skill1CoolDown));
         shootingSkill = this.skills[0];
