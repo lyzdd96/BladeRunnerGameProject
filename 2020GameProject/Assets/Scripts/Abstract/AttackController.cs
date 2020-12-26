@@ -13,6 +13,7 @@ public abstract class AttackController : MonoBehaviour
 
     public int attackSelected = 0;
     protected Attack currentAttack;
+
     // Start is called before the first frame update
     protected abstract void Start();
 

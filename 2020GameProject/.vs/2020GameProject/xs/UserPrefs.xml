@@ -1,13 +1,17 @@
 ﻿<Properties StartupConfiguration="{5DBD7BEE-C477-F2FA-1AF8-6F4E1051B85E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Abstract/MotionController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Attack/Bullets/Bullet.cs">
     <Files>
-      <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="78" Column="15" />
+      <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="20" Column="25" />
       <File FileName="Assets/Scripts/Camara/MainSceneCameraController.cs" />
-      <File FileName="Assets/Scripts/Bullets/Player_Bullet1.cs" />
-      <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" Line="11" Column="36" />
+      <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" Line="31" Column="62" />
       <File FileName="Assets/Scripts/Player/Player.cs" Line="61" Column="1" />
-      <File FileName="Assets/Scripts/Abstract/Character.cs" />
-      <File FileName="Assets/Scripts/Abstract/MotionController.cs" Line="7" Column="1" />
+      <File FileName="Assets/Scripts/Abstract/Character.cs" Line="20" Column="1" />
+      <File FileName="Assets/Scripts/Abstract/MotionController.cs" Line="14" Column="6" />
+      <File FileName="Assets/Scripts/Abstract/Skill.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Abstract/AttackController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Abstract/Attack.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Attack/Bullets/Player_Bullet1.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Attack/Bullets/Bullet.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,10 +19,12 @@
           <Node name="2020GameProject" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Abstract" expanded="True">
-                  <Node name="MotionController.cs" selected="True" />
+                <Node name="Abstract" expanded="True" />
+                <Node name="Attack" expanded="True">
+                  <Node name="Bullets" expanded="True">
+                    <Node name="Bullet.cs" selected="True" />
+                  </Node>
                 </Node>
-                <Node name="Bullets" expanded="True" />
                 <Node name="Player" expanded="True" />
               </Node>
             </Node>
