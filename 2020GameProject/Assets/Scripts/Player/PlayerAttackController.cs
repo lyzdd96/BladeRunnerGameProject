@@ -6,8 +6,9 @@ using UnityEngine;
 // Class to transform the user's controls to player attacks
 public class PlayerAttackController : MonoBehaviour
 {
-    public CharacterController2D controller;
+    public Player player;
     public Animator animator;
+
     public GameObject bulletPrefab;
 
     [Header("Shooting values")]
@@ -58,7 +59,7 @@ public class PlayerAttackController : MonoBehaviour
                 GameObject bullet = Instantiate(bulletPrefab, spawnPos, this.transform.rotation);  // generate a bullet
 
                 // set the shooting direction of this bullet depending on the player facing direction
-                bullet.GetComponent<Player_Bullet1>().setDirection(this.controller.m_FacingRight ? Vector3.right : Vector3.left);
+                bullet.GetComponent<Player_Bullet1>().setDirection(this.player.isFacingRight ? Vector3.right : Vector3.left);
                 fireCoolDownTimer = 0;
             }
         }
@@ -77,7 +78,7 @@ public class PlayerAttackController : MonoBehaviour
         skill1CoolDownTimer += Time.deltaTime;  // update cooldown
 
         // when the skill1 button is pressed and the player is not on the ground
-        if (Input.GetButtonDown("Skill1") && !controller.m_Grounded)
+        if (Input.GetButtonDown("Skill1") && !player.isGrounded)
         {
             // if cooldown is terminated, player can shoot
             if (skill1CoolDownTimer > skill1CoolDown)

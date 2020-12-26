@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
+	[Header("Scripts")]
+	public Player player;
+
 	[Header("Motion values")]
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -12,7 +15,7 @@ public class CharacterController2D : MonoBehaviour
 	public Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	public Transform m_CeilingCheck;                            // A position marking where to check for ceilings
 	public Collider2D m_CrouchDisableCollider;              // A collider that will be disabled when crouching
-	public ContactFilter2D groundContactFilter;  // for ground detection
+
 
 	//const float k_GroundedRadius = 0.04f; // Radius of the overlap circle to determine if grounded
 	
@@ -31,9 +34,8 @@ public class CharacterController2D : MonoBehaviour
 	public bool m_FacingRight { get; set; } = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	private bool m_wasCrouching = false;
-	public bool m_Grounded { get; set; } = true;          // Whether or not the player is grounded.
 	private float groundCheckTimer = 0;  // a timer for ground check, to avoid ground detection when the player just starts jumping
-	private bool isJumping = false;
+	private bool isJumping = false;  // used for groundCheck
 
 
 	private void Awake()
@@ -83,14 +85,13 @@ public class CharacterController2D : MonoBehaviour
 			}
 		} */
 
-		
-		m_Grounded = m_Rigidbody2D.IsTouching(groundContactFilter);
 
-		groundCheckTimer += Time.deltaTime;
+		groundCheckTimer += Time.deltaTime; // update timer
+
 		// only call OnLandEvent after 0.1s of the jumping action (reset timer everytime the player jumps)
 		if (groundCheckTimer >= 0.1f && isJumping)
         {
-			if (m_Grounded)
+			if (this.player.isGrounded)
 			{
 				OnLandEvent.Invoke();
 				isJumping = false;
@@ -109,6 +110,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Move(float move, bool crouch, bool jump, bool backJump)
 	{
+		/*
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
 		{
@@ -117,10 +119,10 @@ public class CharacterController2D : MonoBehaviour
 			{
 				crouch = true;
 			}
-		}
+		}*/
 
 		//only control the player if grounded or airControl is turned on
-		if (m_Grounded || m_AirControl)
+		if (this.player.isGrounded || m_AirControl)
 		{
 			// If crouching
 			if (crouch)
@@ -156,24 +158,24 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !m_FacingRight)
+			if (move > 0 && !player.isFacingRight)
 			{
 				// ... flip the player.
 				Flip();
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && m_FacingRight)
+			else if (move < 0 && player.isFacingRight)
 			{
 				// ... flip the player.
 				Flip();
 			}
 		}
 		// If the player should jump...
-		if (m_Grounded && jump)
+		if (this.player.isGrounded && jump)
 		{
 			// Add a vertical force to the player.
-			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			this.player.isGrounded = false;
+			this.player.thisRB.AddForce(new Vector2(0f, m_JumpForce));
 
 			groundCheckTimer = 0;  // reset timer
 			isJumping = true;
@@ -190,7 +192,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
+		player.isFacingRight = !player.isFacingRight;
 
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = transform.localScale;
@@ -204,7 +206,7 @@ public class CharacterController2D : MonoBehaviour
 		backJumpForce.x = this.m_FacingRight ? -backForce : backForce;  // define the horizontal force sign with the player facing direction
 		backJumpForce.y = verticalForce;
 		// Add a force to the player to back jump
-		m_Grounded = false;
+		player.isGrounded = false;
 		m_Rigidbody2D.AddForce(backJumpForce);
 
 	}

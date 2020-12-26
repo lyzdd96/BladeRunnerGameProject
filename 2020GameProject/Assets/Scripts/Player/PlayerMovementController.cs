@@ -4,20 +4,28 @@ using UnityEngine;
 
 
 // Class to transform the user's controls to player motions and animations
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMovementController : MotionController
 {
-	public CharacterController2D controller;
-	public Animator animator;
-
+	public Player player;
+	public Animator thisAnimator;
 	public float runSpeed = 20f;
 
 	private float horizontalMove = 0f;
 	private bool isJumping = false;
 	private bool isCrouching = false;
-	private bool isBackJumping = false;
+    //private bool isBackJumping = false;
 
-	// Update is called once per frame
-	void Update()
+
+
+    private void Start()
+    {
+		base.animator = thisAnimator;
+    }
+
+
+
+    // Update is called once per frame
+    void Update()
 	{
 		// get the user's input of horizontal movement
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -53,11 +61,12 @@ public class PlayerMovementController : MonoBehaviour
 			animator.SetBool("IsShooting", false);
 		}
 
+		/*
 		if (Input.GetButtonDown("BackJump"))
 		{
 			animator.SetTrigger("IsBackJumping");
 			isBackJumping = true;
-		}
+		}*/
 
 
 
@@ -67,9 +76,9 @@ public class PlayerMovementController : MonoBehaviour
 	void FixedUpdate()
 	{
 		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping, isBackJumping);
+		player.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping);
 		isJumping = false;
-		isBackJumping = false;
+		//isBackJumping = false;
 	}
 
 
@@ -77,7 +86,7 @@ public class PlayerMovementController : MonoBehaviour
 	/// Event function that resets the parameter in animator
 	/// Will be invoked in CharacterController class
 	/// </summary>
-	public void OnLanding()
+	public override void OnLanding()
 	{
 		animator.SetBool("IsJumping", false);
 		isJumping = false;
