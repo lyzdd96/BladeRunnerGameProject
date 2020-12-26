@@ -40,8 +40,8 @@ public class Player : Character
 	// Start is called before the first frame update
 	protected override void Start()
     {
-        // initialization
-        base.healthPoint = playerHP;
+		// initialization
+		base.healthPoint = playerHP;
         base.Start();  // call the start() in the base class
 
 		if (OnLandEvent == null)
@@ -52,18 +52,16 @@ public class Player : Character
 	}
 
     // Update is called once per frame
-    void Fixed()
+    void FixedUpdate()
     {
         // update grounded state
         this.isGrounded = thisRB.IsTouching(groundContactFilter);
 
 		groundCheckTimer += Time.deltaTime; // update timer
 
-		Debug.Log(isGrounded);
 		// only call OnLandEvent after 0.1s of the jumping action (reset timer everytime the player jumps)
 		if (groundCheckTimer >= 0.1f && isJumping)
 		{   
-			
 			if (this.isGrounded)
 			{
 				OnLandEvent.Invoke();

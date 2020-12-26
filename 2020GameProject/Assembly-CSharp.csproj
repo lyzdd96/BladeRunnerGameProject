@@ -68,6 +68,7 @@
     <Compile Include="Assets\ExternalAssets\CyberPunk\Scripts\Perspective2DSortMode.cs" />
     <Compile Include="Assets\Scripts\Abstract\Bullet.cs" />
     <Compile Include="Assets\Scripts\Abstract\Character.cs" />
+    <Compile Include="Assets\Scripts\Abstract\MotionController.cs" />
     <Compile Include="Assets\Scripts\Bullets\Player_Bullet1.cs" />
     <Compile Include="Assets\Scripts\Camara\MainSceneCameraController.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />

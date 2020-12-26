@@ -8,6 +8,7 @@ public class PlayerAttackController : MonoBehaviour
 {
     public Player player;
     public Animator animator;
+
     public GameObject bulletPrefab;
 
     [Header("Shooting values")]
