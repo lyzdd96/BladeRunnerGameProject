@@ -40,8 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 101521714087224473}
   - component: {fileID: 101521714087224472}
+  - component: {fileID: 6542235627710674089}
   - component: {fileID: 101521714087224475}
-  - component: {fileID: 101521714087224474}
   - component: {fileID: 4914710595056042938}
   - component: {fileID: 101521714087224469}
   - component: {fileID: 101521714087224478}
@@ -121,7 +121,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &101521714087224475
+--- !u!114 &6542235627710674089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,33 +130,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 101521714087224468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4543e35e7ff4d44e99f154fc418ad245, type: 3}
+  m_Script: {fileID: 11500000, guid: e797d6cfeab9b4ef7808b510043c275b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 101521714087224474}
-  animator: {fileID: 101521714087224469}
-  runSpeed: 20
---- !u!114 &101521714087224474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101521714087224468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b68a3933689e448d84aa5e243e16240, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_JumpForce: 280
+  playerHP: 3
+  m_JumpForce: 400
   m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.06
+  m_MovementSmoothing: 0.05
   m_AirControl: 1
-  m_WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
-  m_GroundCheck: {fileID: 101521714247101305}
-  m_CeilingCheck: {fileID: 101521714662120896}
   m_CrouchDisableCollider: {fileID: 101521714087224479}
   groundContactFilter:
     useTriggers: 0
@@ -189,6 +170,21 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &101521714087224475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101521714087224468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4543e35e7ff4d44e99f154fc418ad245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6542235627710674089}
+  animator: {fileID: 101521714087224469}
+  runSpeed: 20
 --- !u!114 &4914710595056042938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de98ff737f50f440da59815cd77e3575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 101521714087224474}
+  player: {fileID: 6542235627710674089}
   animator: {fileID: 101521714087224469}
   bulletPrefab: {fileID: 4497383734388207756, guid: 4061fe785d7ad47e19c3c619e0ce153b,
     type: 3}

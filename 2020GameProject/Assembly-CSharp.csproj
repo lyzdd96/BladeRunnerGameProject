@@ -35,6 +35,7 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
+
   <ItemGroup>
      <Compile Include="Assets\ExternalAssets\CyberPunk\Scripts\Done_BGScroller.cs" />
      <Compile Include="Assets\ExternalAssets\CyberPunk\Scripts\Perspective2DSortMode.cs" />
@@ -50,7 +51,28 @@
      <Compile Include="Assets\Scripts\Skill\ShootingSkill.cs" />
      <Compile Include="Assets\Scripts\Skill\Skill.cs" />
     <Reference Include="UnityEngine">
-        <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
+
+      <HintPath>/Applications/Unity/Hub/Editor/2019.4.9f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Applications/Unity/Hub/Editor/2019.4.9f1/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\ExternalAssets\CyberPunk\Scripts\Done_BGScroller.cs" />
+    <Compile Include="Assets\ExternalAssets\CyberPunk\Scripts\Perspective2DSortMode.cs" />
+    <Compile Include="Assets\Scripts\Abstract\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Abstract\Character.cs" />
+    <Compile Include="Assets\Scripts\Abstract\MotionController.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player_Bullet1.cs" />
+    <Compile Include="Assets\Scripts\Camara\MainSceneCameraController.cs" />
+    <Compile Include="Assets\Scripts\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\ObsolateScripts\CharacterController2D.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAttackController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMovementController.cs" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Hub/Editor/2019.4.9f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

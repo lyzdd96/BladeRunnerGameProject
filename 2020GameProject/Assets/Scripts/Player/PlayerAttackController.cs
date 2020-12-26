@@ -6,8 +6,7 @@ using UnityEngine;
 // Class to transform the user's controls to player attacks
 public class PlayerAttackController : AttackController
 {
-    // public GameObject bulletPrefab;
-   
+
     [Header("Shooting values")]
     public Transform muzzlePoint;  // the muzzle point of weapon
     public float shootingCoolDown;  // the cooldown time between each shoot
@@ -53,8 +52,10 @@ public class PlayerAttackController : AttackController
     protected override void spawnAttack() {
         if (Input.GetButtonDown("Fire") || Input.GetButton("Fire"))
         {
+
             this.fire();
         } else if (Input.GetButtonUp("Fire"))
+
         {
             animator.SetBool("IsShooting", false);
         }
@@ -74,6 +75,7 @@ public class PlayerAttackController : AttackController
 
         // if cooldown is terminated, player can shoot
         if (fireCoolDownTimer > shootingCoolDown)
+
         {
             // add some randomness to the bullets spawning y-position
             Vector3 spawnPos = new Vector3(this.muzzlePoint.position.x, Random.Range(this.muzzlePoint.position.y - spawnRange, this.muzzlePoint.position.y + spawnRange), this.muzzlePoint.transform.position.z);
