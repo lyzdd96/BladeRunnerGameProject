@@ -93,7 +93,7 @@ public class PlayerAttackController : AttackController
                 // generate 12 bullets flying from the player (one bullet for each 30 degree around the player)
                 for (int i = 0; i < numBullets_skill1; i++)
                 {
-                    GameObject bullet = Instantiate(currentAttack, this.transform.position, Quaternion.Euler(0, 0, deltaAngle * i));  // generate a bullet
+                    GameObject bullet = Instantiate(this.currentAttack, this.transform.position, Quaternion.Euler(0, 0, deltaAngle * i));  // generate a bullet
 
                     // set the shooting direction of this bullet
                     bullet.GetComponent<Player_Bullet1>().setDirection(new Vector2(Mathf.Cos(Mathf.Deg2Rad*deltaAngle * i), Mathf.Sin(Mathf.Deg2Rad * deltaAngle * i)));
