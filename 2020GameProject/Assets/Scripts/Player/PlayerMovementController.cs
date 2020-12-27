@@ -9,17 +9,21 @@ public class PlayerMovementController : MotionController
 	public Player player;
 	public Animator thisAnimator;
 	public float runSpeed = 20f;
+	public float backJumpCooldown = 5;
 
 	private float horizontalMove = 0f;
 	private bool isJumping = false;
 	private bool isCrouching = false;
-    //private bool isBackJumping = false;
+    private bool isBackJumping = false;
+	private float backJumpCooldownTimer = 0;
+	private Skill backJumpSkill;
 
 
 
     private void Start()
     {
 		base.animator = thisAnimator;
+		this.backJumpSkill = new QuickJump(null, backJumpCooldown, player);
     }
 
 
@@ -61,12 +65,12 @@ public class PlayerMovementController : MotionController
 			animator.SetBool("IsShooting", false);
 		}
 
-		/*
+		
 		if (Input.GetButtonDown("BackJump"))
 		{
 			animator.SetTrigger("IsBackJumping");
-			isBackJumping = true;
-		}*/
+			this.backJumpSkill.runSkill();
+		}
 
 
 
@@ -78,7 +82,7 @@ public class PlayerMovementController : MotionController
 		// Move our character
 		player.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping);
 		isJumping = false;
-		//isBackJumping = false;
+		isBackJumping = false;
 	}
 
 
@@ -94,7 +98,7 @@ public class PlayerMovementController : MotionController
 
 	public void OnCrouching(bool isCrouching)
 	{
-		//animator.SetBool("IsCrouching", isCrouching);
+		// animator.SetBool("IsCrouching", isCrouching);
 	}
 
 

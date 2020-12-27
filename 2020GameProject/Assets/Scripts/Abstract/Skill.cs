@@ -6,7 +6,7 @@ public abstract class Skill {
     public Attack attack;
     public float cooldown { get; set; } = 1;
 
-    public List<GameObject> targets = new List<GameObject>();
+    public List<Character> targets = new List<Character>();
    
     public Skill(Attack attack, float cooldown) {
        this.attack = attack;
@@ -14,4 +14,7 @@ public abstract class Skill {
     }
 
     public virtual void createSkill(Transform transform) {}
+
+    // Skill that doesn't need to spawn an Attack
+    public virtual void runSkill() {}
 }
