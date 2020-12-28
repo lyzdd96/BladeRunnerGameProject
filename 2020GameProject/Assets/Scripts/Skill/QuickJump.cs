@@ -12,6 +12,8 @@ public class QuickJump : Skill {
 
     public override void runSkill() {
         float verticalMove = Input.GetAxisRaw("Vertical") * 5;
+        // disable quick jump to air
+        if (verticalMove > 0) verticalMove = 0;
         float deltaAngle = verticalMove;
         float backJumpForce = 4000f;
         bool isJumping = ((Player)target).isJumping;
