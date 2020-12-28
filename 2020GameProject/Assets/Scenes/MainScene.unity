@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: thisAnimator
       value: 
       objectReference: {fileID: 1116244114}
+    - target: {fileID: 101521714087224475, guid: cc644ba1334ea4b92bbe9bd83625967b,
+        type: 3}
+      propertyPath: backJumpCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4914710595056042938, guid: cc644ba1334ea4b92bbe9bd83625967b,
         type: 3}
       propertyPath: attacks.Array.size
