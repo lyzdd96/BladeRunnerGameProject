@@ -45,6 +45,7 @@
      <Compile Include="Assets\Scripts\Abstract\Skill.cs" />
      <Compile Include="Assets\Scripts\Attack\Bullets\Bullet.cs" />
      <Compile Include="Assets\Scripts\Attack\Bullets\Player_Bullet1.cs" />
+     <Compile Include="Assets\Scripts\Camara\CameraShake.cs" />
      <Compile Include="Assets\Scripts\Camara\MainSceneCameraController.cs" />
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\ObsolateScripts\CharacterController2D.cs" />

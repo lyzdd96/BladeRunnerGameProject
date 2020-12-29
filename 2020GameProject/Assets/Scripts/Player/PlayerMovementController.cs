@@ -10,6 +10,8 @@ public class PlayerMovementController : MotionController
 	public Animator thisAnimator;
 	public float runSpeed = 20f;
 	public float backJumpCooldown = 1;
+	public GameObject dashEffect;
+	public CameraShake CameraParent;
 
 	private float horizontalMove = 0f;
 	private bool isFiring = false;
@@ -76,20 +78,25 @@ public class PlayerMovementController : MotionController
 		
 		if (Input.GetButtonDown("BackJump") && backJumpCooldownTimer > backJumpCooldown && isRunning)
 		{
-			isBackJumping = true;
-			this.backJumpSkill.runSkill();
-			backJumpCooldownTimer = 0;
+			QuickJump();
 		}
-		if (isBackJumping) {
-			isFiring = false;
-			if (!player.isJumping) {
-				animator.SetTrigger("Crouch");
-			} else {
-				animator.Play("Jump", 0, 0f);
-			}
-		}
+
 		isBackJumping = false;
 		animator.SetBool("IsShooting", isFiring);
+	}
+
+	void QuickJump() {
+		isBackJumping = true;
+		this.backJumpSkill.runSkill();
+		backJumpCooldownTimer = 0;
+		isFiring = false;
+		if (!player.isJumping) {
+			animator.SetTrigger("Crouch");
+		} else {
+			animator.Play("Jump", 0, 0f);
+		}
+		Destroy(Instantiate(dashEffect, transform.position, Quaternion.identity), 1);
+		CameraParent.ShakeCamera(1f, 0.005f);
 	}
 
 	// used for physical updates

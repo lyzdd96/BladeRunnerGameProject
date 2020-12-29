@@ -85,7 +85,7 @@ public class PlayerAttackController : AttackController
         Vector2 direction = new Vector2(Mathf.Cos(Mathf.Deg2Rad*deltaAngle) * moveForce, Mathf.Sin(Mathf.Deg2Rad*deltaAngle) * moveForce);
         if (!this.character.isFacingRight)
             direction.x = direction.x * -1;
-        character.thisRB.AddForce(direction);
+        // character.thisRB.AddForce(direction);
 
         MeleePoint.GetComponent<Animator>().SetTrigger("Melee");
         meleeCooldownTimer = 0f;

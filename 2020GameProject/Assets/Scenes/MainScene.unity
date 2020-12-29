@@ -1008,6 +1008,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 101521714087224475, guid: cc644ba1334ea4b92bbe9bd83625967b,
+        type: 3}
+      propertyPath: dashEffect
+      value: 
+      objectReference: {fileID: 3036079489342939092, guid: 6150a4a0b1f69f84b91640c44c86d197,
+        type: 3}
     - target: {fileID: 1589407206604978473, guid: cc644ba1334ea4b92bbe9bd83625967b,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -1018,5 +1024,7 @@ PrefabInstance:
       propertyPath: meleeCooldown
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 451987933046890723, guid: cc644ba1334ea4b92bbe9bd83625967b, type: 3}
+    - {fileID: 6968531754845412946, guid: cc644ba1334ea4b92bbe9bd83625967b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cc644ba1334ea4b92bbe9bd83625967b, type: 3}
