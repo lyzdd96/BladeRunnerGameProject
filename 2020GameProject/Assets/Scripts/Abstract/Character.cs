@@ -35,7 +35,42 @@ public abstract class Character : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Function to check the current HP of this character and perform dying action if necessary
+    /// </summary>
+    /// <returns>True if the HP <= 0</returns>
+    public bool checkHP()
+    {
+        if (this.healthPoint <= 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Function of moving to be overriden by Player class
+    /// </summary>
+    /// <param name="move"></param>
+    /// <param name="crouch"></param>
+    /// <param name="jump"></param>
     public abstract void Move(float move, bool crouch, bool jump);
+
+    /// <summary>
+    /// Function of moving to be overriden by Monster class
+    /// </summary>
+    /// <param name="destination"></param>
+    /// <param name="speed"></param>
+    public abstract void Move(Vector3 destination, float speed);
+
+    /// <summary>
+    /// The trigger function for collider of this game object
+    /// </summary>
+    /// <param name="collision"></param>
+    protected abstract void OnTriggerEnter2D(Collider2D collision);
+
+
 
     protected void Flip()
     {

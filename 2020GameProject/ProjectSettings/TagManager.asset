@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Monster
   - Ground
+  - PlayerBullet
+  - MonsterBullet
   layers:
   - Default
   - TransparentFX
@@ -45,4 +47,7 @@ TagManager:
     locked: 0
   - name: Unit
     uniqueID: 3874194951
+    locked: 0
+  - name: UI
+    uniqueID: 2287761079
     locked: 0

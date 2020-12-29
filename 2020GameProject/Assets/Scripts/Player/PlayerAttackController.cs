@@ -14,6 +14,8 @@ public class PlayerAttackController : AttackController
     public float meleeCooldown;
     public float skill1CoolDown;  // the cooldown time of skill1
 
+    public Character character;
+
     private float fireCoolDownTimer = 0;  // timer for the shooting cooldown
     private float spawnRange = 0.1f;  // the vertical spawan range for bullets (to add some randomness to the bullets spawning position)
     private float meleeCooldownTimer = 0;

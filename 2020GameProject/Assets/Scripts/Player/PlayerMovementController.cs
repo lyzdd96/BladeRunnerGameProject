@@ -77,6 +77,8 @@ public class PlayerMovementController : MotionController
 		if (Input.GetButtonDown("BackJump") && backJumpCooldownTimer > backJumpCooldown && isRunning)
 		{
 			isBackJumping = true;
+
+
 			this.backJumpSkill.runSkill();
 			backJumpCooldownTimer = 0;
 		}
@@ -90,6 +92,11 @@ public class PlayerMovementController : MotionController
 		}
 		isBackJumping = false;
 		animator.SetBool("IsShooting", isFiring);
+		// check for destroying condition
+		if (player.checkHP() && !player.isDead)
+		{
+			destroy();  // destroy if HP <= 0
+		}
 	}
 
 	// used for physical updates
@@ -115,6 +122,15 @@ public class PlayerMovementController : MotionController
 	public void OnCrouching(bool isCrouching)
 	{
 		// animator.SetBool("IsCrouching", isCrouching);
+	}
+
+	/// <summary>
+	/// Function to play destroying animation
+	/// </summary>
+	protected override void destroy()
+	{
+		animator.SetTrigger("IsDying");
+		player.isDead = true;  // set the dying status to true, we won't destroy the player game object
 	}
 
 
