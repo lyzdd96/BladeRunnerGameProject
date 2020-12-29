@@ -10,6 +10,8 @@ public class PlayerMovementController : MotionController
 	public Animator thisAnimator;
 	public float runSpeed = 20f;
 	public float quickMoveCooldown = 1;
+	public GameObject dashEffect;
+	public CameraShake CameraParent;
 
 	private float horizontalMove = 0f;
 	private bool isFiring = false;
@@ -76,23 +78,8 @@ public class PlayerMovementController : MotionController
 		
 		if (Input.GetButtonDown("QuickMove") && quickMoveCooldownTimer > quickMoveCooldown && isRunning)
 		{
-			isQuickMoving = true;
-
-
-			this.quickMoveSkill.runSkill();
-			quickMoveCooldownTimer = 0;
+			QuickJump();
 		}
-		if (isQuickMoving) {
-			isFiring = false;
-			if (!player.isJumping) {
-				animator.SetTrigger("Crouch");
-			} else {
-				animator.Play("Jump", 0, 0f);
-			}
-		}
-		isQuickMoving = false;
-		animator.SetBool("IsShooting", isFiring);
-
 
 		// check if we need to trigger the dying animation
 		if(player.isDead)
@@ -100,6 +87,20 @@ public class PlayerMovementController : MotionController
 			destroy();
 		}
 
+	}
+
+	void QuickJump() {
+		isQuickMoving = true;
+		this.quickMoveSkill.runSkill();
+		quickMoveCooldownTimer = 0;
+		isFiring = false;
+		if (!player.isJumping) {
+			animator.SetTrigger("Crouch");
+		} else {
+			animator.Play("Jump", 0, 0f);
+		}
+		Destroy(Instantiate(dashEffect, transform.position, Quaternion.identity), 1);
+		CameraParent.ShakeCamera(0.5f, 0.005f);
 	}
 
 	// used for physical updates
