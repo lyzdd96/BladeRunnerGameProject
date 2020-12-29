@@ -9,29 +9,29 @@ public class PlayerMovementController : MotionController
 	public Player player;
 	public Animator thisAnimator;
 	public float runSpeed = 20f;
-	public float backJumpCooldown = 1;
+	public float quickMoveCooldown = 1;
 
 	private float horizontalMove = 0f;
 	private bool isFiring = false;
 	private bool isJumping = false;
 	private bool isCrouching = false;
-    private bool isBackJumping = false;
+    private bool isQuickMoving = false;
 	private bool isRunning = false;
-	private float backJumpCooldownTimer = 0;
-	private Skill backJumpSkill;
+	private float quickMoveCooldownTimer = 0;
+	private Skill quickMoveSkill;
 
 
 
     private void Start()
     {
 		base.animator = thisAnimator;
-		this.backJumpSkill = new QuickJump(null, backJumpCooldown, player);
-		backJumpCooldownTimer = backJumpCooldown;
+		this.quickMoveSkill = new QuickMove(null, quickMoveCooldown, player);
+		quickMoveCooldownTimer = quickMoveCooldown;
 
     }
 
 	private void UpdateCooldown() {
- 	 	backJumpCooldownTimer += Time.deltaTime;
+		quickMoveCooldownTimer += Time.deltaTime;
 	}
 
     // Update is called once per frame
@@ -74,15 +74,15 @@ public class PlayerMovementController : MotionController
 		}
 
 		
-		if (Input.GetButtonDown("BackJump") && backJumpCooldownTimer > backJumpCooldown && isRunning)
+		if (Input.GetButtonDown("QuickMove") && quickMoveCooldownTimer > quickMoveCooldown && isRunning)
 		{
-			isBackJumping = true;
+			isQuickMoving = true;
 
 
-			this.backJumpSkill.runSkill();
-			backJumpCooldownTimer = 0;
+			this.quickMoveSkill.runSkill();
+			quickMoveCooldownTimer = 0;
 		}
-		if (isBackJumping) {
+		if (isQuickMoving) {
 			isFiring = false;
 			if (!player.isJumping) {
 				animator.SetTrigger("Crouch");
@@ -90,13 +90,16 @@ public class PlayerMovementController : MotionController
 				animator.Play("Jump", 0, 0f);
 			}
 		}
-		isBackJumping = false;
+		isQuickMoving = false;
 		animator.SetBool("IsShooting", isFiring);
-		// check for destroying condition
-		if (player.checkHP() && !player.isDead)
-		{
-			destroy();  // destroy if HP <= 0
+
+
+		// check if we need to trigger the dying animation
+		if(player.isDead)
+        {
+			destroy();
 		}
+
 	}
 
 	// used for physical updates
@@ -105,7 +108,7 @@ public class PlayerMovementController : MotionController
 		// Move our character
 		player.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping);
 		isJumping = false;
-		isBackJumping = false;
+		isQuickMoving = false;
 	}
 
 
@@ -129,8 +132,14 @@ public class PlayerMovementController : MotionController
 	/// </summary>
 	protected override void destroy()
 	{
-		animator.SetTrigger("IsDying");
-		player.isDead = true;  // set the dying status to true, we won't destroy the player game object
+		// we won't destroy the player game object
+
+		animator.SetTrigger("IsDying");  // trigger the dying animation
+		// deactivate the player animator
+		//this.player.gameObject.GetComponent<Animator>().enabled = false;
+
+		// deactivate the player moving sript
+		this.player.gameObject.GetComponent<PlayerMovementController>().enabled = false;
 	}
 
 

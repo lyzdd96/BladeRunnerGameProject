@@ -95,9 +95,6 @@ public class GameFlowManager : MonoBehaviour
     //when the losing condition is triggered
     void losePrompt()
     {
-        // deactivate the player moving sript
-        this.player.gameObject.GetComponent<PlayerMovementController>().enabled = false;
-
         //show the losing text and playAgain button
         loseText.gameObject.SetActive(true);
         playAgainButton.gameObject.SetActive(true);

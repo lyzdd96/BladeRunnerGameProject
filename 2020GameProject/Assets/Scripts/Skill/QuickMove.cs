@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuickJump : Skill {
+public class QuickMove : Skill {
     // which Character object to apply the skill
     Character target;
-    public QuickJump(Attack attack, float cooldown, Character target): base(attack, cooldown) {
+
+    public QuickMove(Attack attack, float cooldown, Character target): base(attack, cooldown) {
         this.target = target;
         base.targets.Add(target);
     }

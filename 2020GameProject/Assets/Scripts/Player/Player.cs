@@ -74,6 +74,12 @@ public class Player : Character
 			}
 		}
 
+		// check for destroying condition
+		if (checkHP() && !isDead)
+		{
+			isDead = true;
+		}
+
 
 
 	}
