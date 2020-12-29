@@ -97,6 +97,7 @@ public class PlayerAttackController : AttackController
         // if cooldown is terminated, player can shoot
         if (skill1CoolDownTimer > shootingSkill.cooldown)
         {
+            animator.Play("Base Layer.Jump", 0, 0f);
             shootingSkill.createSkill(this.transform);
             skill1CoolDownTimer = 0;
         }

@@ -33,7 +33,7 @@ public class Player : Character
     //private bool wasCrouching = false;
 	private bool m_wasCrouching = false;
 	private float groundCheckTimer = 0;  // a timer for ground check, to avoid ground detection when the player just starts jumping
-	private bool isJumping = true;  // used for groundCheck
+	public bool isJumping = true;  // used for groundCheck
 
 
 
