@@ -23,6 +23,9 @@ public abstract class Bullet : Attack
         //Get a component reference to this object's Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
 
+        // Get a component reference to this object's Animator
+        animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -105,8 +108,11 @@ public abstract class Bullet : Attack
     {
         StopCoroutine(this.coroutine);
         rb.velocity = Vector3.zero;
-        // destroy this bullet
-        Destroy(this.gameObject, 0.4f);
+
+        animator.SetTrigger("IsHit"); // trigger the hitting animation
+        // destroy this bullet with a delay to play the is hit animation
+        Destroy(this.gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+        
 
     }
 

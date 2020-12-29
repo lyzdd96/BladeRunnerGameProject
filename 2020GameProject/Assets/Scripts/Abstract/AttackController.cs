@@ -6,7 +6,6 @@ using UnityEngine;
 // Class to transform input parameters to attacks
 public abstract class AttackController : MonoBehaviour
 {
-    public Player character;
     public Animator animator;
     public List<Attack> attacks = new List<Attack>();
     protected List<Skill> skills = new List<Skill>();

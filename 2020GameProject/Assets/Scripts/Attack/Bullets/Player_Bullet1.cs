@@ -28,7 +28,6 @@ public class Player_Bullet1 : Bullet
     {
         if (collision.gameObject.tag == "Monster" || collision.gameObject.tag == "Ground")
         {
-            animator.SetTrigger("IsHit");
             stop();  // stop the motion of bullet when hits a monster
         }
     }

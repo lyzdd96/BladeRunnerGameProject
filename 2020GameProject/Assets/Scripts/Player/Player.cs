@@ -6,6 +6,7 @@ public class Player : Character
 {
 	[Header("Battle values")]
 	public float playerHP;
+	public float protectionTime;  // the protection time after the player is getting attacked
 
 	[Header("Motion values")]
 	[SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
@@ -28,14 +29,16 @@ public class Player : Character
 	public class BoolEvent : UnityEvent<bool> { }
 	public BoolEvent OnCrouchEvent;
 
-
+	
 	private Vector3 velocity = Vector3.zero;
     //private bool wasCrouching = false;
 	private bool m_wasCrouching = false;
 	private float groundCheckTimer = 0;  // a timer for ground check, to avoid ground detection when the player just starts jumping
 	private bool isJumping = true;  // used for groundCheck
 
+	private float getAttackedCoolDown = 0;  // timer for the protection time after the player is getting attacked
 
+	public bool isDead { get; set; } = false;  // bool to store whether the player is dead (will be checked by GameFlowManager)
 
 	// Start is called before the first frame update
 	protected override void Start()
@@ -54,8 +57,10 @@ public class Player : Character
     // Update is called once per frame
     void FixedUpdate()
     {
-        // update grounded state
-        this.isGrounded = thisRB.IsTouching(groundContactFilter);
+		getAttackedCoolDown += Time.deltaTime;  // update the protection timer
+
+		// update grounded state
+		this.isGrounded = thisRB.IsTouching(groundContactFilter);
 
 		groundCheckTimer += Time.deltaTime; // update timer
 
@@ -74,6 +79,12 @@ public class Player : Character
 	}
 
 
+	/// <summary>
+    /// Function to move the player using controller inputs
+    /// </summary>
+    /// <param name="move"></param>
+    /// <param name="crouch"></param>
+    /// <param name="jump"></param>
 	public override void Move(float move, bool crouch, bool jump)
 	{
 		/*
@@ -155,12 +166,30 @@ public class Player : Character
 		}*/
 	}
 
-	/// <summary>
-	/// This function will be called automatically when this player is colliding with any collider
-	/// </summary>
-	/// <param name="collision"></param>
-	private void OnTriggerEnter2D(Collider2D collision)
+
+    public override void Move(Vector3 destination, float speed)
     {
-        // TODO
+        // leave blank
     }
+
+
+    /// <summary>
+    /// This function will be called automatically when this player is colliding with any collider
+    /// </summary>
+    /// <param name="collision"></param>
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+		// if collided with monster or monster bullet, the player is considered getting attacked
+		if (collision.gameObject.tag == "Monster" || collision.gameObject.tag == "MonsterBullet")
+		{
+			if(getAttackedCoolDown >= 0.75f)
+            {
+				this.getAttacked(1);
+				getAttackedCoolDown = 0;  // reset the protection timer
+			}
+		}
+	}
+
+
+
 }
