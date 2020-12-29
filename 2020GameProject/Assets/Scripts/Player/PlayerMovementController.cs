@@ -83,7 +83,9 @@ public class PlayerMovementController : MotionController
 		if (isBackJumping) {
 			isFiring = false;
 			if (!player.isJumping) {
-				animator.SetTrigger("IsBackJumping");
+				animator.SetTrigger("Crouch");
+			} else {
+				animator.Play("Jump", 0, 0f);
 			}
 		}
 		isBackJumping = false;
