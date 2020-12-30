@@ -24,7 +24,7 @@ public class FlyingMonsterAttackController : AttackController
     // Update is called once per frame
     protected override void Update()
     {
-        fire(player);
+        // fire(player);
     }
 
     /// <summary>
