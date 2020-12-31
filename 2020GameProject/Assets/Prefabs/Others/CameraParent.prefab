@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6570824602116018588
+--- !u!1 &5972624180937621652
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6570824602116018590}
-  - component: {fileID: 6570824602116018589}
+  - component: {fileID: 5972624180937621654}
+  - component: {fileID: 5972624180937621653}
   m_Layer: 0
   m_Name: CameraParent
   m_TagString: Untagged
@@ -17,28 +17,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6570824602116018590
+--- !u!4 &5972624180937621654
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6570824602116018588}
+  m_GameObject: {fileID: 5972624180937621652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.00988, y: 1.3495977, z: -5.951172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6570824601036306436}
+  - {fileID: 5972624179854141708}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6570824602116018589
+--- !u!114 &5972624180937621653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6570824602116018588}
+  m_GameObject: {fileID: 5972624180937621652}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4843f776334edad4bb28a0022ce5636b, type: 3}
@@ -49,13 +49,12 @@ MonoBehaviour:
   shakeDuration: 0
   smooth: 0
   smoothAmount: 5
---- !u!1001 &134380747973241328
+--- !u!1001 &580452740269832440
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-
-    m_TransformParent: {fileID: 6570824602116018590}
+    m_TransformParent: {fileID: 5972624180937621654}
     m_Modifications:
     - target: {fileID: 6551937826075840776, guid: 32970f2f602ca42dfab3dc6d96b6f42e,
         type: 3}
@@ -129,9 +128,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32970f2f602ca42dfab3dc6d96b6f42e, type: 3}
---- !u!4 &6570824601036306436 stripped
+--- !u!4 &5972624179854141708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6551937826075841012, guid: 32970f2f602ca42dfab3dc6d96b6f42e,
     type: 3}
-  m_PrefabInstance: {fileID: 134380747973241328}
+  m_PrefabInstance: {fileID: 580452740269832440}
   m_PrefabAsset: {fileID: 0}

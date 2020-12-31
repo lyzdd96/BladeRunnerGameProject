@@ -1,25 +1,24 @@
 ﻿<Properties StartupConfiguration="{5DBD7BEE-C477-F2FA-1AF8-6F4E1051B85E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Monster/FlyingMonsterAttackController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skill/QuickJump.cs">
     <Files>
-      <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="134" Column="35" />
+      <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="128" Column="43" />
       <File FileName="Assets/Scripts/Camara/MainSceneCameraController.cs" />
-      <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" />
-      <File FileName="Assets/Scripts/Player/Player.cs" />
-      <File FileName="Assets/Scripts/Abstract/Character.cs" />
-      <File FileName="Assets/Scripts/Abstract/MotionController.cs" />
+      <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" Line="36" Column="9" />
+      <File FileName="Assets/Scripts/Player/Player.cs" Line="41" Column="14" />
+      <File FileName="Assets/Scripts/Abstract/Character.cs" Line="49" Column="22" />
+      <File FileName="Assets/Scripts/Abstract/MotionController.cs" Line="36" Column="1" />
       <File FileName="Assets/Scripts/Abstract/Skill.cs" />
-      <File FileName="Assets/Scripts/Abstract/AttackController.cs" />
-      <File FileName="Assets/Scripts/Abstract/Attack.cs" />
-      <File FileName="Assets/Scripts/Attack/Bullets/Player_Bullet1.cs" />
-      <File FileName="Assets/Scripts/Attack/Bullets/Bullet.cs" />
+      <File FileName="Assets/Scripts/Abstract/AttackController.cs" Line="10" Column="23" />
+      <File FileName="Assets/Scripts/Abstract/Attack.cs" Line="20" Column="25" />
+      <File FileName="Assets/Scripts/Attack/Bullets/Player_Bullet1.cs" Line="28" Column="6" />
+      <File FileName="Assets/Scripts/Attack/Bullets/Bullet.cs" Line="12" Column="24" />
+      <File FileName="Assets/Scripts/Monster/NewMonoBehaviour.cs" Line="28" Column="6" />
       <File FileName="Assets/Scripts/LevelLoader.cs" />
-      <File FileName="Assets/Scripts/GameManager/GameFlowManager.cs" />
-      <File FileName="Assets/Scripts/Attack/Bullets/Monster_Bullet1.cs" />
-      <File FileName="Assets/Scripts/Monster/FlyingMonsterMovementController.cs" Line="92" Column="6" />
-      <File FileName="Assets/Scripts/Monster/Monster.cs" />
-      <File FileName="Assets/Scripts/Skill/ShootingSkill.cs" />
-      <File FileName="Assets/Scripts/BehaviourTreeAI/FlyingMonsterAI.cs" Line="43" Column="41" />
-      <File FileName="Assets/Scripts/Monster/FlyingMonsterAttackController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager/GameFlowManager.cs" Line="71" Column="6" />
+      <File FileName="Assets/Scripts/Attack/Bullets/Monster_Bullet1.cs" Line="32" Column="6" />
+      <File FileName="Assets/Scripts/Monster/FlyingMonsterMovementController.cs" Line="54" Column="39" />
+      <File FileName="Assets/Scripts/Monster/Monster.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Skill/QuickJump.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -31,13 +30,12 @@
                 <Node name="Attack" expanded="True">
                   <Node name="Bullets" expanded="True" />
                 </Node>
-                <Node name="BehaviourTreeAI" expanded="True" />
                 <Node name="GameManager" expanded="True" />
-                <Node name="Monster" expanded="True">
-                  <Node name="FlyingMonsterAttackController.cs" selected="True" />
-                </Node>
+                <Node name="Monster" expanded="True" />
                 <Node name="Player" expanded="True" />
-                <Node name="Skill" expanded="True" />
+                <Node name="Skill" expanded="True">
+                  <Node name="QuickJump.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -47,7 +45,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="026feb18-3f45-4609-b8b7-37ef7d632aac" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="73467a52-d469-41df-aceb-989ca2676ca4" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
