@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 15
+  speed: 7
   animator: {fileID: 2619188256573940386}
   maxDistance: 50
 --- !u!70 &2619188256573940390

@@ -24,7 +24,8 @@ public class FlyingMonsterAttackController : AttackController
     // Update is called once per frame
     protected override void Update()
     {
-        fire(player);
+        //fire(player);
+
     }
 
     /// <summary>
@@ -43,19 +44,42 @@ public class FlyingMonsterAttackController : AttackController
         StartCoroutine(coroutine);
     }*/
 
+
     /// <summary>
-    /// Function to handle the fire action of monster toward the target gameObject
+    /// Function to handle the attack action of monster toward the target gameObject
     /// </summary>
-    private void fire(GameObject target)
+    /// <param name="target"></param>
+    /// <param name="cooldown"> The shooting cooldown between bullets</param>
+    /// <param name="numBullets"> The num of Bullets to be shot</param>
+    public void attack(GameObject target, float cooldown, int numBullets)
     {
-        // add some randomness to the bullets spawning y-position
-        Vector3 spawnPos = new Vector3(this.muzzlePoint.position.x, Random.Range(this.muzzlePoint.position.y - spawnRange, this.muzzlePoint.position.y + spawnRange), this.muzzlePoint.transform.position.z);
-        Attack bullet = Instantiate(this.currentAttack, spawnPos, this.transform.rotation);  // generate a bullet
+        StartCoroutine(Fire(target, cooldown, numBullets));  // start the fire coroutine
+    }
 
-        // set the shooting direction of this bullet depending on the player position
-        Vector3 direction = target.transform.position - this.transform.position;
-        bullet.GetComponent<Attack>().setDirection(direction);
+    //Co-routine for firing in the target direction
+    protected IEnumerator Fire(GameObject target, float cooldown, int numBullets)
+    {
+        Vector3 spawnPos;
+        Attack bullet;
+        Vector3 direction;
 
-        
+        // While still have bullets to be shot
+        while (numBullets > 0)
+        {
+            numBullets--;
+
+
+            // add some randomness to the bullets spawning y-position
+            spawnPos = new Vector3(this.muzzlePoint.position.x, Random.Range(this.muzzlePoint.position.y - spawnRange, this.muzzlePoint.position.y + spawnRange), this.muzzlePoint.transform.position.z);
+            bullet = Instantiate(this.currentAttack, spawnPos, this.transform.rotation);  // generate a bullet
+
+            // set the shooting direction of this bullet depending on the player position
+            direction = target.transform.position - this.transform.position;
+            bullet.GetComponent<Attack>().setDirection(direction);
+
+
+            // Yielding and wait for cooldown seconds before the shooting of the next bullet
+            yield return new WaitForSeconds(cooldown);
+        }
     }
 }
