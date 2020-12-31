@@ -51,7 +51,8 @@ public class FlyingMonsterMovementController : MotionController
 			// deactivate the monster moving sript
 			this.gameObject.GetComponent<FlyingMonsterMovementController>().enabled = false;
 			this.gameObject.GetComponent<FlyingMonsterAttackController>().enabled = false;
-			destroy();  // destroy this monster
+			animator.SetTrigger("IsDying");
+			// destroy() this monster will be called when the animation finished (using animation event setting)
         }
 
 
@@ -62,7 +63,7 @@ public class FlyingMonsterMovementController : MotionController
 	void FixedUpdate()
 	{
 		// Move our character
-		monster.Move(player.transform.position, movingSpeed);
+		//monster.Move(player.transform.position, movingSpeed);
 
 		// calculate the current velocity using the positions
 		float currentSpeed = (this.monster.transform.position - currentPosition).magnitude / Time.deltaTime;
@@ -73,6 +74,25 @@ public class FlyingMonsterMovementController : MotionController
 
 	}
 
+
+	/// <summary>
+    /// Function to perform wandering action for this monster
+    /// </summary>
+	public void wander()
+    {
+
+    }
+
+	/// <summary>
+    /// Function to perform path finding to the target
+    /// </summary>
+    /// <param name="target"></param>
+	public void pathFinding(Vector3 target)
+    {
+		// start SmoothMovement co-routine passing in the Vector2 end as destination
+		//StartCoroutine(ConstantMovement(destination));
+		monster.Move(target, movingSpeed);
+	}
 
 	/// <summary>
 	/// Event function that resets the parameter in animator
