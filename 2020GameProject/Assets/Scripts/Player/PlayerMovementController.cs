@@ -14,10 +14,10 @@ public class PlayerMovementController : MotionController
 	public CameraShake CameraParent;
 
 	private float horizontalMove = 0f;
-	private bool isFiring = false;
+	//private bool isFiring = false;
 	private bool isJumping = false;
 	private bool isCrouching = false;
-    private bool isQuickMoving = false;
+    //private bool isQuickMoving = false;
 	private bool isRunning = false;
 	private float quickMoveCooldownTimer = 0;
 	private Skill quickMoveSkill;
@@ -68,11 +68,11 @@ public class PlayerMovementController : MotionController
 		// detect whether player has pressed Fire and update the animator parameter
 		if (Input.GetButtonDown("Fire"))
 		{
-			isFiring = true;
+			//isFiring = true;
 		}
 		else if(Input.GetButtonUp("Fire"))
 		{
-			isFiring = false;
+			//isFiring = false;
 		}
 
 		
@@ -90,10 +90,10 @@ public class PlayerMovementController : MotionController
 	}
 
 	void QuickJump() {
-		isQuickMoving = true;
+		//isQuickMoving = true;
 		this.quickMoveSkill.runSkill();
 		quickMoveCooldownTimer = 0;
-		isFiring = false;
+		//isFiring = false;
 		if (!player.isJumping) {
 			animator.SetTrigger("Crouch");
 		} else {
@@ -109,7 +109,7 @@ public class PlayerMovementController : MotionController
 		// Move our character
 		player.Move(horizontalMove * Time.fixedDeltaTime, isCrouching, isJumping);
 		isJumping = false;
-		isQuickMoving = false;
+		//isQuickMoving = false;
 	}
 
 

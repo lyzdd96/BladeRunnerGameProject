@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4666590394121294345}
   - component: {fileID: 4666590394121294346}
   - component: {fileID: 4351968816287468914}
+  - component: {fileID: 6615793662861454800}
   - component: {fileID: 4666590394121294349}
   - component: {fileID: 4666590394121294350}
   - component: {fileID: 4666590394121294351}
@@ -133,6 +134,22 @@ MonoBehaviour:
   attackSelected: 0
   muzzlePoint: {fileID: 4944429714840907700}
   character: {fileID: 4666590394121294345}
+--- !u!114 &6615793662861454800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666590394121294336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c667dccf60941497bae5837de0647f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 4666590394121294346}
+  attackController: {fileID: 4351968816287468914}
+  attackRange: 7
+  alertRange: 12
 --- !u!95 &4666590394121294349
 Animator:
   serializedVersion: 3
