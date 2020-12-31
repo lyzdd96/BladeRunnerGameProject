@@ -12,6 +12,7 @@ public abstract class Character : MonoBehaviour
     public Rigidbody2D thisRB { get; set; }                //The Rigidbody2D component attached to this object(the bullet game object which has a script that derives this abstract class).
     public bool isFacingRight { get; set; } = true;  // For determining which way the player is currently facing.
     public bool isGrounded { get; set; } = true;          // Whether or not the player is grounded.
+    public bool isInvincible = false;
 
     // Use this for initialization
     //Protected, virtual functions can be overridden by inheriting classes.
@@ -31,6 +32,7 @@ public abstract class Character : MonoBehaviour
     /// <param name="damage"></param>
     protected void getAttacked(int damage)
     {
+        if (isInvincible) return;
         this.healthPoint -= damage;
     }
 

@@ -231,7 +231,6 @@ Transform:
 Camera:
   m_CorrespondingSourceObject: {fileID: 6570824601036306683, guid: d1f323de6bf20474a932b829f76e3aab,
     type: 3}
-  m_PrefabInstance: {fileID: 6570824600947458180}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &579774575
 GameObject:

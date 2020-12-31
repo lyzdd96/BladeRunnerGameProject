@@ -25,6 +25,7 @@ public class FlyingMonsterAttackController : AttackController
     protected override void Update()
     {
         //fire(player);
+
     }
 
     /// <summary>

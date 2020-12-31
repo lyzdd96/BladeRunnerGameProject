@@ -81,6 +81,10 @@ public class PlayerMovementController : MotionController
 			QuickJump();
 		}
 
+		if (quickMoveCooldownTimer > 0.5) {
+			player.isInvincible = false;
+		}
+
 		// check if we need to trigger the dying animation
 		if(player.isDead)
         {
@@ -90,6 +94,7 @@ public class PlayerMovementController : MotionController
 	}
 
 	void QuickJump() {
+		player.isInvincible = true;
 		isQuickMoving = true;
 		this.quickMoveSkill.runSkill();
 		quickMoveCooldownTimer = 0;
