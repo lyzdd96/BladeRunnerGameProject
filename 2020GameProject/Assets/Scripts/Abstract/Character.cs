@@ -14,7 +14,7 @@ public abstract class Character : MonoBehaviour
     public bool isGrounded { get; set; } = true;          // Whether or not the player is grounded.
 
 	public bool isDead { get; set; } = false;  // bool to store whether the player is dead (will be checked by GameFlowManager)
-	float fade = 1f; // death Dissolve effect
+	public float fade = 1f; // death Dissolve effect
 	Material material;
     // Use this for initialization
     //Protected, virtual functions can be overridden by inheriting classes.

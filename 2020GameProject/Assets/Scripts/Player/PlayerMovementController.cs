@@ -79,7 +79,10 @@ public class PlayerMovementController : MotionController
 		if (Input.GetButtonDown("QuickMove") && quickMoveCooldownTimer > quickMoveCooldown && isRunning)
 		{
 			QuickJump();
+			player.fade = 0f; // fade effect in reverse
 		}
+
+		if (player.fade < 1f) player.fade += Time.deltaTime * 1f;
 
 		// check if we need to trigger the dying animation
 		if(player.isDead)
