@@ -38,8 +38,6 @@ public class Player : Character
 
 	private float getAttackedCoolDown = 0;  // timer for the protection time after the player is getting attacked
 
-	public bool isDead { get; set; } = false;  // bool to store whether the player is dead (will be checked by GameFlowManager)
-
 	// Start is called before the first frame update
 	protected override void Start()
     {
@@ -52,6 +50,7 @@ public class Player : Character
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
+		
 	}
 
     // Update is called once per frame
@@ -73,14 +72,7 @@ public class Player : Character
 				isJumping = false;
 			}
 		}
-
-		// check for destroying condition
-		if (checkHP() && !isDead)
-		{
-			isDead = true;
-		}
-
-
+		checkDie();
 
 	}
 
