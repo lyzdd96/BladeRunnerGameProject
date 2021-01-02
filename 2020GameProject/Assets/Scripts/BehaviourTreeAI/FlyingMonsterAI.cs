@@ -29,25 +29,25 @@ public class FlyingMonsterAI : MonoBehaviour
         _tree = new BehaviorTreeBuilder(gameObject)
             .Selector()
                 .Sequence()
+                    .Condition("isPlayerInAttackRange", () => {
+                        // check the distance between this monster and the player
+                        return Vector3.Distance(this.transform.position, player.transform.position) <= attackRange;
+                    })
+                    .WaitTime(1f)  // wait 1 second before each attack action
+                    .Do("Attack", () => {
+                        attackController.attack(player, 0.25f, 3);
+                        return TaskStatus.Success;
+                    })
+                .End()
+                .Sequence()
                     .Condition("isPlayerInAlertRange", () => {
                         // check the distance between this monster and the player
                         return Vector3.Distance(this.transform.position, player.transform.position) <= alertRange;
                     })
-                    .Selector()
-                        .Condition("isPlayerInAttackRange", () => {
-                            // check the distance between this monster and the player
-                            return Vector3.Distance(this.transform.position, player.transform.position) <= attackRange;
-                        })
-                        .Do("PathFinding to Player", () => {
-                            // perform path finding to the player
-                            movementController.pathFinding(player.transform.position);
-                            return TaskStatus.Failure;  // return failure to keep path finding if needed
-                        })
-                    .End()
-                    .WaitTime(1f)  // wait 3 seconds before attack
-                    .Do("Attack", () => {
-                        attackController.attack(player, 0.25f, 3);
-                        return TaskStatus.Success;
+                    .Do("PathFinding to Player", () => {
+                        // perform path finding to the player
+                        movementController.pathFinding(player.transform.position);
+                        return TaskStatus.Success;  // return failure to keep path finding if needed
                     })
                 .End()
                 .Do("Wandering", () => {
@@ -57,7 +57,7 @@ public class FlyingMonsterAI : MonoBehaviour
             .End()
             .Build();
 
-        
+
     }
 
     // Update is called once per frame
@@ -65,5 +65,6 @@ public class FlyingMonsterAI : MonoBehaviour
     {
         // Update our tree every frame
         _tree.Tick();
+        Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
     }
 }

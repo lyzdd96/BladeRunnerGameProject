@@ -11,7 +11,7 @@ public class FlyingMonsterMovementController : MotionController
 	private GameObject player;
 	private Monster monster;
 	private Vector3 currentPosition;
-
+	private Vector3 wanderDest = Vector3.zero;  // the current destination of wandering action
 	private bool isDestroyed = false; 
 
 
@@ -80,7 +80,34 @@ public class FlyingMonsterMovementController : MotionController
     /// </summary>
 	public void wander()
     {
+		// if currently no wandering destination, assign a new one
+		if(wanderDest == Vector3.zero)
+        {
+			int xDir = Random.Range(0,2);
+			// move to left if xDir is 0, move to right if xDir is 1
+			Vector3 direction = new Vector3((xDir == 0 ? -1 : 1), transform.position.y, transform.position.z);
 
+			float randDistance = Random.Range(2, 5);  // get a random moving distance between 2 and 5
+
+			direction.x *= randDistance;
+			this.wanderDest = direction;
+
+			// move the monster toward the target
+			monster.Move(wanderDest, movingSpeed);
+		}
+		else  // else, move toward the current destination
+        {
+			// if the monster is reaching the wander destination, reset the destination to zero
+			if(Vector3.Distance(this.transform.position, this.wanderDest) <= 0.1f)
+            {
+				this.wanderDest = Vector3.zero;
+            }
+			else
+            {
+				// move the monster toward the target
+				monster.Move(wanderDest, movingSpeed);
+			}
+        }
     }
 
 	/// <summary>
@@ -89,8 +116,7 @@ public class FlyingMonsterMovementController : MotionController
     /// <param name="target"></param>
 	public void pathFinding(Vector3 target)
     {
-		// start SmoothMovement co-routine passing in the Vector2 end as destination
-		//StartCoroutine(ConstantMovement(destination));
+		// move the monster toward the target
 		monster.Move(target, movingSpeed);
 	}
 
