@@ -107,7 +107,7 @@ public class PlayerMovementController : MotionController
 		
 		if (Input.GetButtonDown("QuickMove") && quickMoveCooldownTimer > quickMoveCooldown && isRunning)
 		{
-			QuickJump();
+			QuickMove();
 			player.fade = 0f; // fade effect in reverse
 		}
 
@@ -121,7 +121,7 @@ public class PlayerMovementController : MotionController
 
 	}
 
-	void QuickJump() {
+	void QuickMove() {
 		//isQuickMoving = true;
 		this.quickMoveSkill.runSkill();
 		quickMoveCooldownTimer = 0;

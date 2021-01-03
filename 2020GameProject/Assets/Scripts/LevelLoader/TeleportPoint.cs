@@ -32,7 +32,11 @@ public class TeleportPoint : MonoBehaviour
             player.isReachingTPpoint = true;
             gameFlowManager.enableTeleportText(true);
         }
-        else
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
         {
             player.isReachingTPpoint = false;
             gameFlowManager.enableTeleportText(false);
