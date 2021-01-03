@@ -25,6 +25,12 @@ public class Monster_Bullet1 : Bullet
     /// <param name="collision"></param>
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Player") {
+            if (collision.gameObject.GetComponent<CircleCollider2D>().enabled == false) {
+                Debug.Log("dodged");
+                return;
+            }
+        }
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ground")
         {
             stop();  // stop the motion of bullet when hits a monster

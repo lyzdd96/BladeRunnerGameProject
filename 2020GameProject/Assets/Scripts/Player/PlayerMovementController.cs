@@ -64,6 +64,7 @@ public class PlayerMovementController : MotionController
 			}
             else
             {
+				QuickMoveEnd();
 				player.fade -= Time.deltaTime * 1f;  // dissolve the player when teleport
 			}
 		}
@@ -108,7 +109,6 @@ public class PlayerMovementController : MotionController
 		if (Input.GetButtonDown("QuickMove") && quickMoveCooldownTimer > quickMoveCooldown && isRunning)
 		{
 			QuickMove();
-			player.fade = 0f; // fade effect in reverse
 		}
 
 		
@@ -121,9 +121,19 @@ public class PlayerMovementController : MotionController
 
 	}
 
+	void QuickMoveEnd() {
+		player.isInvincible = false; // end of quickmove invincibility
+		player.GetComponent<CapsuleCollider2D>().enabled = true;
+		player.GetComponent<CircleCollider2D>().enabled = true;
+	}
+
 	void QuickMove() {
 		//isQuickMoving = true;
 		this.quickMoveSkill.runSkill();
+		player.fade = 0.2f; // fade effect in reverse
+		player.isInvincible = true;
+		player.GetComponent<CapsuleCollider2D>().enabled = false;
+		player.GetComponent<CircleCollider2D>().enabled = false;
 		quickMoveCooldownTimer = 0;
 		//isFiring = false;
 		if (!player.isJumping) {
