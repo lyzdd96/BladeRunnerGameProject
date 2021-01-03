@@ -13,6 +13,9 @@ public abstract class Character : MonoBehaviour
     public bool isFacingRight { get; set; } = true;  // For determining which way the player is currently facing.
     public bool isGrounded { get; set; } = true;          // Whether or not the player is grounded.
 
+	public bool isDead { get; set; } = false;  // bool to store whether the player is dead (will be checked by GameFlowManager)
+	public float fade = 1f; // death Dissolve effect
+	Material material;
     // Use this for initialization
     //Protected, virtual functions can be overridden by inheriting classes.
     protected virtual void Start()
@@ -22,6 +25,7 @@ public abstract class Character : MonoBehaviour
 
         //Get a component reference to this object's Rigidbody2D
         thisRB = GetComponent<Rigidbody2D>();
+        material = GetComponent<SpriteRenderer>().material;
 
     }
 
@@ -32,6 +36,21 @@ public abstract class Character : MonoBehaviour
     protected void getAttacked(int damage)
     {
         this.healthPoint -= damage;
+    }
+
+    protected void checkDie() {
+        // check for destroying condition
+		if (checkHP() && !isDead)
+		{
+			isDead = true;
+		}
+
+		if (isDead && fade >= 0f) {
+			fade -= Time.deltaTime;
+		}
+
+        if (material != null)
+		    material.SetFloat("_Fade", fade);
     }
 
 
