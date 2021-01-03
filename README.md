@@ -5,7 +5,7 @@
 ## Google Doc for control system
 https://docs.google.com/document/d/1_OUWAmkbEnArS8aMi7erJel4sKBNaaR4af8CnhZQQhw/edit
 
-## Google Doc for contents (English/chinese mixed)
+## Google Doc for contents (English/Chinese mixed)
 https://docs.google.com/document/d/1iL-wyd_OdJULpPXm1wOkwFFQVGzj87eAjIczhi6WyCY/edit
 
 ## Code Structure Design Diagram
