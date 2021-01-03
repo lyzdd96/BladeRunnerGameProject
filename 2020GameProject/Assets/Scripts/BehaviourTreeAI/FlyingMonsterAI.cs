@@ -65,6 +65,6 @@ public class FlyingMonsterAI : MonoBehaviour
     {
         // Update our tree every frame
         _tree.Tick();
-        Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
+        //Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
     }
 }

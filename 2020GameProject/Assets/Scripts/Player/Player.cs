@@ -38,6 +38,11 @@ public class Player : Character
 
 	private float getAttackedCoolDown = 0;  // timer for the protection time after the player is getting attacked
 
+	// Transportation
+	public bool isReachingTPpoint { get; set; } = false;  
+
+
+
 	// Start is called before the first frame update
 	protected override void Start()
     {

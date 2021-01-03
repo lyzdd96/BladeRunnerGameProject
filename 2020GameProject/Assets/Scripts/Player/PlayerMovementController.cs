@@ -13,24 +13,31 @@ public class PlayerMovementController : MotionController
 	public GameObject dashEffect;
 	public CameraShake CameraParent;
 
+
+	private GameFlowManager gameFlowManager;
+
 	private float horizontalMove = 0f;
 	//private bool isFiring = false;
 	private bool isJumping = false;
 	private bool isCrouching = false;
     //private bool isQuickMoving = false;
 	private bool isRunning = false;
+	private bool isTeleporting = false;
 	private float quickMoveCooldownTimer = 0;
 	private Skill quickMoveSkill;
 
-
+	
 
     private void Start()
     {
 		base.animator = thisAnimator;
+
+		// initialize motion skill
 		this.quickMoveSkill = new QuickMove(null, quickMoveCooldown, player);
 		quickMoveCooldownTimer = quickMoveCooldown;
 
-    }
+		gameFlowManager = GameObject.Find("GameManager").GetComponent<GameFlowManager>();
+	}
 
 	private void UpdateCooldown() {
 		quickMoveCooldownTimer += Time.deltaTime;
@@ -40,6 +47,28 @@ public class PlayerMovementController : MotionController
     void Update()
 	{
 		this.UpdateCooldown();
+
+		// determine if the player is try to teleport to the next map
+		if(Input.GetButtonDown("Up") && player.isReachingTPpoint)
+		{
+			gameFlowManager.loadNextLevel(1);  // 1 second delay before the loading animation
+			isTeleporting = true;
+			player.fade -= Time.deltaTime * 1f;  // dissolve the player when teleport
+		}
+		else
+        {
+			// update the fade value of player (dissolve effect)
+			if (player.fade < 1f && !isTeleporting)
+            {
+				player.fade += Time.deltaTime * 1f;
+			}
+            else
+            {
+				player.fade -= Time.deltaTime * 1f;  // dissolve the player when teleport
+			}
+		}
+		
+
 		// get the user's input of horizontal movement
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 		isRunning = Mathf.Abs(horizontalMove) > 1;
@@ -82,7 +111,7 @@ public class PlayerMovementController : MotionController
 			player.fade = 0f; // fade effect in reverse
 		}
 
-		if (player.fade < 1f) player.fade += Time.deltaTime * 1f;
+		
 
 		// check if we need to trigger the dying animation
 		if(player.isDead)

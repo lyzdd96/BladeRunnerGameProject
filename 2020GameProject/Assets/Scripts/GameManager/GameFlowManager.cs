@@ -10,12 +10,14 @@ public class GameFlowManager : MonoBehaviour
     [Header("UI elements")]
     public TMP_Text winText;
     public TMP_Text loseText;
+    public TMP_Text teleportText;
     public Button playAgainButton;
 
 
 
     private GameObject player;
     private Player playerScript;
+    private LevelLoader levelLoader;
     private List<Monster> monsters;
     private bool isGameOver = false;
 
@@ -30,16 +32,22 @@ public class GameFlowManager : MonoBehaviour
         this.player = GameObject.Find("Player");  // get the Player gameobject
         playerScript = player.GetComponent<Player>();  // get the instance of Player script
 
-        
+        // get the level loader instance
+        levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+
+
         //set win text and lose text and button to invisible at the beginning
         winText.gameObject.SetActive(false);
         loseText.gameObject.SetActive(false);
+        teleportText.gameObject.SetActive(false);
         playAgainButton.gameObject.SetActive(false);
         
 
         //setup the button and bind with playAgainButtonOnClick() function
         Button paButton = playAgainButton.GetComponent<Button>();
         paButton.onClick.AddListener(playAgainButtonOnClick);
+
+
     }
 
     // Update is called once per frame
@@ -100,5 +108,38 @@ public class GameFlowManager : MonoBehaviour
         playAgainButton.gameObject.SetActive(true);
         setCursorUnlocked();
         Cursor.visible = true;
+    }
+
+    /// <summary>
+    /// Function to load the next level using level loader
+    /// </summary>
+    /// <param name="delay"> The delay before enter the loading animation</param>
+    public void loadNextLevel(float delay)
+    {
+        StartCoroutine(LoadNextLevelWithDelay(delay));
+    }
+
+    /// <summary>
+    /// Coroutine function to load the level (scene) with a delay
+    /// </summary>
+    /// <param name="sceneIndexToLoad"></param>
+    /// <returns></returns>
+    IEnumerator LoadNextLevelWithDelay(float delay)
+    {
+        // wait for 2 seconds before loading the next level (2 seconds to play the animation)
+        yield return new WaitForSeconds(delay);
+
+        // load the next level
+        levelLoader.LoadNextLevel();
+    }
+
+    /// <summary>
+    /// Function to display the teleporting prompt
+    /// </summary>
+    /// <param name="enabled"></param>
+    public void enableTeleportText(bool enabled)
+    {
+        //show the teleport text
+        teleportText.gameObject.SetActive(enabled);
     }
 }
