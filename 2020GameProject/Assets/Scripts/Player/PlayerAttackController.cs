@@ -106,7 +106,7 @@ public class PlayerAttackController : AttackController
         {
             // add some randomness to the bullets spawning y-position
             Vector3 spawnPos = new Vector3(this.muzzlePoint.position.x, Random.Range(this.muzzlePoint.position.y - spawnRange, this.muzzlePoint.position.y + spawnRange), this.muzzlePoint.transform.position.z);
-            Attack bullet = Instantiate(this.currentAttack, spawnPos, this.transform.rotation);  // generate a bullet
+            Attack bullet = Instantiate(this.currentAttack, spawnPos, Quaternion.Euler(0, 0, 180 * (character.isFacingRight ? 0 : 1)));  // generate a bullet
             // set the shooting direction of this bullet depending on the player facing direction
             bullet.GetComponent<Attack>().setDirection(this.character.isFacingRight ? Vector3.right : Vector3.left);
             fireCoolDownTimer = 0f;
