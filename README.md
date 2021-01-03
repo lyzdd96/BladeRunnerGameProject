@@ -2,7 +2,7 @@
 2020 Winter holiday Game Project: Blade Runner / roguelike/ 2D
 
 
-## Google Doc for control system
+## Google Doc for controller system
 https://docs.google.com/document/d/1_OUWAmkbEnArS8aMi7erJel4sKBNaaR4af8CnhZQQhw/edit
 
 ## Google Doc for contents (English/Chinese mixed)
