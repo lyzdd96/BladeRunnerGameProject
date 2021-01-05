@@ -1,17 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using CleverCrow.Fluid.BTs.Trees;
 using CleverCrow.Fluid.BTs.Tasks;
 
 
 // Class for the monster AI using behaviour tree
-public class FlyingMonsterAI : MonoBehaviour
+public class PlayerMonsterAI : MonoBehaviour
 {
     
-    public FlyingMonsterMovementController movementController;
-    public FlyingMonsterAttackController attackController;
+    public PlayerMonsterMovementController movementController;
+    public PlayerMonsterAttackController attackController;
 
-    public float attackRange = 20f;  // the shooting range for this monster
+    public float attackRange = 5f;  // the shooting range for this monster
     public float alertRange = 12f;  // the alerting range for this monster
 
     private Player player;
@@ -35,7 +35,7 @@ public class FlyingMonsterAI : MonoBehaviour
                     })
                     .WaitTime(1f)  // wait 1 second before each attack action
                     .Do("Attack", () => {
-                        attackController.attack(player, 0.25f, 3);
+                        attackController.attack(player, 0.5f, 1);
                         return TaskStatus.Success;
                     })
                 .End()
@@ -56,8 +56,6 @@ public class FlyingMonsterAI : MonoBehaviour
                 })
             .End()
             .Build();
-
-
     }
 
     // Update is called once per frame

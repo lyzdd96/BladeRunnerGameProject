@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class FlyingMonsterAttackController : AttackController
+public class PlayerMonsterAttackController : AttackController
 {
     [Header("Shooting values")]
     public Transform muzzlePoint;  // the muzzle point of weapon
 
-    public Character character;
+    public Monster character;
     private Player player;
     private float spawnRange = 0.1f;  // the vertical spawan range for bullets (to add some randomness to the bullets spawning position)
 
@@ -15,10 +15,12 @@ public class FlyingMonsterAttackController : AttackController
     // Use this for initialization
     protected override void Start()
     {
-        this.currentAttack = this.attacks[this.attackSelected];
-
         // get the player gameObject from the game flow manager
         player = GameObject.Find("GameManager").GetComponent<GameFlowManager>().getPlayer();
+
+        // get identical attacks from Player (need to refactor Attack target selection)
+        // this.attacks = player.GetComponent<PlayerAttackController>().attacks;
+        this.currentAttack = this.attacks[this.attackSelected];
     }
 
     // Update is called once per frame
@@ -67,14 +69,17 @@ public class FlyingMonsterAttackController : AttackController
         while (numBullets > 0)
         {
             numBullets--;
-
+            animator.SetBool("IsShooting", true);
 
             // add some randomness to the bullets spawning y-position
             spawnPos = new Vector3(this.muzzlePoint.position.x, Random.Range(this.muzzlePoint.position.y - spawnRange, this.muzzlePoint.position.y + spawnRange), this.muzzlePoint.transform.position.z);
-            bullet = Instantiate(this.currentAttack, spawnPos, this.transform.rotation);  // generate a bullet
 
             // set the shooting direction of this bullet depending on the player position
-            direction = target.transform.position - this.transform.position;
+            // direction = target.transform.position - this.transform.position;
+            direction = (target.transform.position.x - this.transform.position.x) > 0 ? Vector3.right : Vector3.left;
+            // move slightly in player's direction. make sure is facing in right direction
+            character.Move(target.transform.position, 1);
+            bullet = Instantiate(this.currentAttack, spawnPos, this.transform.rotation);  // generate a bullet
             bullet.GetComponent<Attack>().setDirection(direction);
 
             // Yielding and wait for cooldown seconds before the shooting of the next bullet

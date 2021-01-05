@@ -102,7 +102,6 @@ public class PlayerAttackController : AttackController
 
         // if cooldown is terminated, player can shoot
         if (fireCoolDownTimer > shootingCoolDown)
-
         {
             // add some randomness to the bullets spawning y-position
             Vector3 spawnPos = new Vector3(this.muzzlePoint.position.x, Random.Range(this.muzzlePoint.position.y - spawnRange, this.muzzlePoint.position.y + spawnRange), this.muzzlePoint.transform.position.z);
