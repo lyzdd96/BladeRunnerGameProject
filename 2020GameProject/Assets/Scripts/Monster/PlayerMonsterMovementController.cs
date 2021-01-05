@@ -109,8 +109,13 @@ public class PlayerMonsterMovementController : MotionController
 	public void pathFinding(Vector3 target)
     {
 		// move the monster toward the target
-		monster.Move(target, movingSpeed);
+		monster.Move(target.x * Time.fixedDeltaTime, false, false);
 	}
+
+
+    public void jump() {
+        monster.Move(0f, false, true);
+    }
 
 	/// <summary>
 	/// Event function that resets the parameter in animator

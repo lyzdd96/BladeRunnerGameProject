@@ -6,6 +6,10 @@ public class Monster : Character
     [Header("Battle values")]
     public float monsterHP;
 
+	Vector3 velocity = Vector3.zero;
+    [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
+	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
+    
     // Use this for initialization
     protected override void Start()
     {
@@ -18,6 +22,7 @@ public class Monster : Character
     void FixedUpdate()
     {
         checkDie();
+        this.isGrounded = true;
     }
 
 
@@ -47,7 +52,42 @@ public class Monster : Character
 
     public override void Move(float move, bool crouch, bool jump)
     {
-        // leave blank
+        // TODO (almost) same as Player.Move, need refactor
+        if (this.isGrounded)
+		{
+
+			// Move the character by finding the target velocity
+			Vector3 targetVelocity = new Vector2(move * 10f, thisRB.velocity.y);
+			// And then smoothing it out and applying it to the character (pass m_Velocity by reference, and SmoothDamp will change it gradually by applying smoothing)
+			thisRB.velocity = Vector3.SmoothDamp(thisRB.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
+
+			// If the input is moving the player right and the player is facing left...
+			if (move > 0 && !isFacingRight)
+			{
+				// ... flip the player.
+				Flip();
+			}
+			// Otherwise if the input is moving the player left and the player is facing right...
+			else if (move < 0 && isFacingRight)
+			{
+				// ... flip the player.
+				Flip();
+			}
+		}
+		// If the player should jump...
+		if (this.isGrounded && jump)
+		{
+			// Add a vertical force to the player.
+			this.isGrounded = false;
+			this.thisRB.AddForce(new Vector2(0f, m_JumpForce));
+
+		}
+		/*
+		// If the player is backJumping
+		if (m_Grounded && backJump)
+		{
+            this.backJump(1250, 200);
+		}*/
     }
 
     /// <summary>

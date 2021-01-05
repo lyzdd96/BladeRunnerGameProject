@@ -986,5 +986,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8740930622447228805, guid: c52448178e24db941a7a13ec03362abc,
+        type: 3}
+      propertyPath: monsterHP
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c52448178e24db941a7a13ec03362abc, type: 3}

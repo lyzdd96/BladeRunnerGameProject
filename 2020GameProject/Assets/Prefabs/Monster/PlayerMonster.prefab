@@ -367,7 +367,7 @@ MonoBehaviour:
   capsCollider: {fileID: 0}
   fade: 1
   isInvincible: 0
-  monsterHP: 5
+  monsterHP: 10
 --- !u!50 &861473752242843509
 Rigidbody2D:
   serializedVersion: 4
