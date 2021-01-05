@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 861473752242843509}
   - component: {fileID: 861473752242843508}
   - component: {fileID: 861473752242843511}
+  - component: {fileID: 4020544762908285642}
   m_Layer: 0
   m_Name: PlayerMonster
   m_TagString: Monster
@@ -375,7 +376,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861473752242843519}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -420,3 +421,19 @@ CircleCollider2D:
   m_Offset: {x: 0.02, y: -0.218}
   serializedVersion: 2
   m_Radius: 0.13
+--- !u!70 &4020544762908285642
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861473752242843519}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.02, y: -0.1}
+  m_Size: {x: 0.19, y: 0.5}
+  m_Direction: 0
