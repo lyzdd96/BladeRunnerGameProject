@@ -1,5 +1,6 @@
 # BladeRunnerGameProject
-2020 Winter holiday Game Project: Blade Runner / roguelike/ 2D
+2020 Winter holiday Game Project: Blade Runner / roguelike / 2D
+
 
 
 ## Google Doc for controller system
