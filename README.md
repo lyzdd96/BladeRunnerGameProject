@@ -1,5 +1,6 @@
 # BladeRunnerGameProject
-2020 Winter holiday Game Project: Blade Runner / roguelike/ 2D
+2020 Winter holiday Game Project: Blade Runner / roguelike / 2D
+
 
 
 ## Google Doc for controller system
@@ -13,3 +14,6 @@ https://app.creately.com/diagram/MHWMWVnegnS/edit
 
 ## AI: Behaviour Tree structure for monsters
 https://docs.google.com/drawings/d/11N7p43N9j7gpOqtZnVNbPOSk9mR03U-K5DQ1SyRgL3s/edit?usp=sharing
+
+## Shaders and Effects
+https://docs.google.com/document/d/14b-tOU33PlzufKcC6e5A0HWH9K4zInkUeuOET1S8o1E/
