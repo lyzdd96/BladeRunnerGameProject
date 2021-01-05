@@ -52,7 +52,8 @@ public class FlyingMonsterMovementController : MotionController
 			this.gameObject.GetComponent<FlyingMonsterMovementController>().enabled = false;
 			this.gameObject.GetComponent<FlyingMonsterAttackController>().enabled = false;
 			animator.SetTrigger("IsDying");
-			// destroy() this monster will be called when the animation finished (using animation event setting)
+			// destroy() this monster will be called when the animation finished (using animation event setting, which
+			// is at the last frame of explosion animation)
         }
 
 

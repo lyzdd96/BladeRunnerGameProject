@@ -193,6 +193,16 @@ PrefabInstance:
       propertyPath: CameraParent
       value: 
       objectReference: {fileID: 1583010073}
+    - target: {fileID: 101521714087224476, guid: cc644ba1334ea4b92bbe9bd83625967b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101521714087224479, guid: cc644ba1334ea4b92bbe9bd83625967b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc644ba1334ea4b92bbe9bd83625967b, type: 3}
 --- !u!1 &335869427
@@ -1287,6 +1297,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031597458299895452, guid: 1485cadb4a2324dd4b3816052dfff52c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -302
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1485cadb4a2324dd4b3816052dfff52c, type: 3}
