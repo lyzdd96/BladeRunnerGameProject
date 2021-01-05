@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Skill {
+public abstract class Skill : MonoBehaviour {
     public Attack attack;
     public float cooldown { get; set; } = 1;
 
     public List<Character> targets = new List<Character>();
    
-    public Skill(Attack attack, float cooldown) {
+    public virtual void SetSkill(Attack attack, float cooldown) {
        this.attack = attack;
        this.cooldown = cooldown;
     }

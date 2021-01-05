@@ -56,8 +56,6 @@ public class FlyingMonsterAI : MonoBehaviour
                 })
             .End()
             .Build();
-
-
     }
 
     // Update is called once per frame

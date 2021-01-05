@@ -3,24 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class QuickMove : Skill {
+
     // which Character object to apply the skill
     Character target;
     MotionController movementcontroller;
+    GameObject effect;
+    CameraShake cameracontroller;
+    float cooldownTimer = 0f;
+    float duration = 0.5f;
 
-    public QuickMove(Attack attack, float cooldown, Character target): base(attack, cooldown) {
+    public QuickMove SetQuickMove(Attack attack, float cooldown, Character target, GameObject effect, CameraShake cameracontroller) {
+        base.SetSkill(attack, cooldown);
         this.target = target;
+        this.effect = effect;
+        this.cameracontroller = cameracontroller;
         base.targets.Add(target);
         movementcontroller = target.GetComponent<PlayerMovementController>();
+        cooldownTimer = cooldown;
+        return this;
+    }
+
+    void Update() {
+        cooldownTimer += Time.deltaTime;
+        if (cooldownTimer >= duration && target.isInvincible) {
+            endSkill();
+        }
     }
 
     public override void runSkill() { 
+        if (cooldownTimer < cooldown) return;
         float verticalMove = Input.GetAxisRaw("Vertical") * 5;
         bool isJumping = false;
         bool isCrouching = false;
-        if (verticalMove > 0) {
-            movementcontroller.animator.SetBool("IsJumping", true);
-            isJumping = true;
-        }
+ 
         float deltaAngle = verticalMove;
         float backJumpForce = 4000f;
 
@@ -30,10 +45,40 @@ public class QuickMove : Skill {
         if (!this.target.isFacingRight)
             direction.x = direction.x * -1;
         
-        // target.thisRB.AddForce(direction);
-
-        // this is better
+       if (verticalMove > 0) {
+            isJumping = true;
+            // disable quickmove higher when in air
+            direction.y = 0;
+        }
         target.Move(direction.x * Time.fixedDeltaTime, isCrouching, isJumping);
 
+        direction.x = 0;
+        target.thisRB.AddForce(direction);
+
+        ShowEffects(isJumping);
+
+    }
+
+    void ShowEffects(bool isJumping) {
+        target.fade = 0.2f; // fade effect in reverse
+		target.isInvincible = true;
+		target.GetComponent<CapsuleCollider2D>().enabled = false;
+		target.GetComponent<CircleCollider2D>().enabled = false;
+		cooldownTimer = 0;
+		if (!((Player)target).isJumping && !isJumping) {
+			movementcontroller.animator.SetTrigger("Crouch");
+		} else {
+            movementcontroller.animator.SetBool("IsJumping", true);
+			movementcontroller.animator.Play("Jump", 0, 0f);
+		}
+		Instantiate(effect, target.transform.position, Quaternion.identity);
+		cameracontroller.ShakeCamera(0.5f, 0.005f);
+    }
+
+
+    void endSkill() {
+        target.isInvincible = false; // end of quickmove invincibility
+		target.GetComponent<CapsuleCollider2D>().enabled = true;
+		target.GetComponent<CircleCollider2D>().enabled = true;
     }
 }

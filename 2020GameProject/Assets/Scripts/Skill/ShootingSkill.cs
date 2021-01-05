@@ -5,7 +5,9 @@ using UnityEngine;
 public class ShootingSkill : Skill {
 
     private int numBullets_skill1 = 12;  // number of bullets shooting by skill1
-    public ShootingSkill(Attack attack, float cooldown): base(attack, cooldown) {}
+    public void SetShootingSkill(Attack attack, float cooldown) {
+        base.SetSkill(attack, cooldown);
+    }
 
     public override void createSkill(Transform transform) {
         float deltaAngle = 360 / numBullets_skill1;

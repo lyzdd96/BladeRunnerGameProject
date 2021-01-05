@@ -34,8 +34,10 @@ public class PlayerAttackController : AttackController
         meleeCooldownTimer = meleeCooldown;
 
         this.currentAttack = this.attacks[this.attackSelected];
-        this.skills.Add(new ShootingSkill(this.currentAttack, skill1CoolDown));
-        shootingSkill = this.skills[0];
+       
+        shootingSkill = gameObject.AddComponent<ShootingSkill>();
+        shootingSkill.SetSkill(this.currentAttack, skill1CoolDown);
+        this.skills.Add(shootingSkill);
     }
 
     // Update is called once per frame
