@@ -141,7 +141,7 @@ public class PlayerMovementController : MotionController
 		} else {
 			animator.Play("Jump", 0, 0f);
 		}
-		Destroy(Instantiate(dashEffect, transform.position, Quaternion.identity), 1);
+		Instantiate(dashEffect, transform.position, Quaternion.identity);
 		CameraParent.ShakeCamera(0.5f, 0.005f);
 	}
 
