@@ -49,7 +49,9 @@ public abstract class Character : MonoBehaviour
 
 		if (isDead && fade >= 0f) {
 			fade -= Time.deltaTime;
-		}
+		} else if (isDead && fade < 0f) {
+            Destroy(this.gameObject);
+        }
 
         if (material != null)
 		    material.SetFloat("_Fade", fade);

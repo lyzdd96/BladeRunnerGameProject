@@ -11,6 +11,7 @@ public class PlayerMonsterAttackController : AttackController
     private float spawnRange = 0.1f;  // the vertical spawan range for bullets (to add some randomness to the bullets spawning position)
 
     private IEnumerator coroutine; // the attack coroutine
+    Vector3 direction;
 
     // Use this for initialization
     protected override void Start()
@@ -55,6 +56,9 @@ public class PlayerMonsterAttackController : AttackController
     /// <param name="numBullets"> The num of Bullets to be shot</param>
     public void attack(Character target, float cooldown, int numBullets)
     {
+        direction = (target.transform.position.x - this.transform.position.x) > 0 ? Vector3.right : Vector3.left;
+        character.Move(target.transform.position, 1);
+
         StartCoroutine(Fire(target, cooldown, numBullets));  // start the fire coroutine
     }
 
@@ -63,7 +67,7 @@ public class PlayerMonsterAttackController : AttackController
     {
         Vector3 spawnPos;
         Attack bullet;
-        Vector3 direction;
+       
 
         // While still have bullets to be shot
         while (numBullets > 0)
@@ -76,9 +80,7 @@ public class PlayerMonsterAttackController : AttackController
 
             // set the shooting direction of this bullet depending on the player position
             // direction = target.transform.position - this.transform.position;
-            direction = (target.transform.position.x - this.transform.position.x) > 0 ? Vector3.right : Vector3.left;
             // move slightly in player's direction. make sure is facing in right direction
-            character.Move(target.transform.position, 1);
             bullet = Instantiate(this.currentAttack, spawnPos, this.transform.rotation);  // generate a bullet
             bullet.GetComponent<Attack>().setDirection(direction);
 

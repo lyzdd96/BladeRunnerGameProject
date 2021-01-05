@@ -55,8 +55,6 @@ public class FlyingMonsterMovementController : MotionController
 			// destroy() this monster will be called when the animation finished (using animation event setting)
         }
 
-
-
 	}
 
 	// used for physical updates
