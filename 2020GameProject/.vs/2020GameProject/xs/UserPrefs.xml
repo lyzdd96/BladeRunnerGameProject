@@ -1,45 +1,35 @@
-﻿<Properties StartupConfiguration="{5DBD7BEE-C477-F2FA-1AF8-6F4E1051B85E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skill/QuickMove.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Monster/FlyingMonsterMovementController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Player/PlayerMovementController.cs" Line="111" Column="26" />
-      <File FileName="Assets/Scripts/Camara/MainSceneCameraController.cs" />
-      <File FileName="Assets/Scripts/Player/PlayerAttackController.cs" Line="128" Column="31" />
-      <File FileName="Assets/Scripts/Player/Player.cs" Line="42" Column="56" />
-      <File FileName="Assets/Scripts/Abstract/Character.cs" Line="36" Column="20" />
-      <File FileName="Assets/Scripts/Abstract/MotionController.cs" Line="13" Column="9" />
-      <File FileName="Assets/Scripts/Abstract/Skill.cs" Line="19" Column="25" />
+      <File FileName="../../../2020GameJam/The-Fresh-Game-Jam-2021/Library/PackageCache/com.unity.textmeshpro@3.0.1/Scripts/Runtime/TMP_DefaultControls.cs" Line="191" Column="1" />
+      <File FileName="Assets/Scripts/Abstract/MotionController.cs" />
+      <File FileName="Assets/Scripts/Abstract/Skill.cs" />
       <File FileName="Assets/Scripts/Abstract/AttackController.cs" />
-      <File FileName="Assets/Scripts/Abstract/Attack.cs" Line="20" Column="25" />
-      <File FileName="Assets/Scripts/Attack/Bullets/Player_Bullet1.cs" Line="28" Column="6" />
-      <File FileName="Assets/Scripts/Attack/Bullets/Bullet.cs" Line="13" Column="21" />
-      <File FileName="Assets/Scripts/GameManager/GameFlowManager.cs" Line="112" Column="59" />
-      <File FileName="Assets/Scripts/Attack/Bullets/Monster_Bullet1.cs" Line="32" Column="6" />
-      <File FileName="Assets/Scripts/Monster/FlyingMonsterMovementController.cs" Line="24" Column="45" />
-      <File FileName="Assets/Scripts/Monster/Monster.cs" Line="29" Column="26" />
+      <File FileName="Assets/Scripts/Abstract/Attack.cs" />
+      <File FileName="Assets/Scripts/Attack/Bullets/Player_Bullet1.cs" />
+      <File FileName="Assets/Scripts/Attack/Bullets/Bullet.cs" />
+      <File FileName="Assets/Scripts/GameManager/GameFlowManager.cs" />
+      <File FileName="Assets/Scripts/Attack/Bullets/Monster_Bullet1.cs" />
+      <File FileName="Assets/Scripts/Monster/FlyingMonsterMovementController.cs" Line="27" Column="3" />
+      <File FileName="Assets/Scripts/Monster/Monster.cs" />
       <File FileName="Assets/Scripts/Skill/ShootingSkill.cs" />
-      <File FileName="Assets/Scripts/Monster/FlyingMonsterAttackController.cs" Line="45" Column="8" />
-      <File FileName="Assets/Scripts/BehaviourTreeAI/FlyingMonsterAI.cs" Line="68" Column="9" />
-      <File FileName="Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Runtime/Volume/Volume.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/LevelLoader/TransportationPoint.cs" Line="30" Column="45" />
-      <File FileName="Assets/Scripts/LevelLoader/LevelLoader.cs" Line="17" Column="6" />
-      <File FileName="Assets/Scripts/Skill/QuickMove.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Monster/FlyingMonsterAttackController.cs" />
+      <File FileName="Assets/Scripts/BehaviourTreeAI/FlyingMonsterAI.cs" />
+      <File FileName="Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Runtime/Volume/Volume.cs" />
+      <File FileName="Assets/Scripts/LevelLoader/LevelLoader.cs" />
+      <File FileName="Assets/Scripts/Skill/QuickMove.cs" />
+      <File FileName="Library/PackageCache/com.unity.render-pipelines.universal@7.3.1/Shaders/2D/Sprite-Lit-Default.shader" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="2020GameProject" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Abstract" expanded="True" />
-                <Node name="Attack" expanded="True">
-                  <Node name="Bullets" expanded="True" />
-                </Node>
-                <Node name="GameManager" expanded="True" />
-                <Node name="LevelLoader" expanded="True" />
-                <Node name="Monster" expanded="True" />
-                <Node name="Player" expanded="True" />
-                <Node name="Skill" expanded="True">
-                  <Node name="QuickMove.cs" selected="True" />
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Assets" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Monster" expanded="True">
+                    <Node name="FlyingMonsterMovementController.cs" selected="True" />
+                  </Node>
                 </Node>
               </Node>
             </Node>
