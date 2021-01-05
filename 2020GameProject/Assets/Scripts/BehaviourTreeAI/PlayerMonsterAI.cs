@@ -35,6 +35,7 @@ public class PlayerMonsterAI : MonoBehaviour
                     })
                     .WaitTime(1f)  // wait 1 second before each attack action
                     .Do("Attack", () => {
+                        movementController.pathFinding(player.transform.position);
                         attackController.attack(player, 0.5f, 1);
                         return TaskStatus.Success;
                     })
