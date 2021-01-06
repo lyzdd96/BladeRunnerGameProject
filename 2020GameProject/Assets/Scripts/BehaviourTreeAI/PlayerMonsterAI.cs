@@ -79,7 +79,7 @@ public class PlayerMonsterAI : MonoBehaviour
                     })
                 .End()
                 .Do("Wandering", () => {
-                    movementController.wander();  // perform wander action
+                    // movementController.wander();  // perform wander action
                     return TaskStatus.Success;
                 })
             .End()

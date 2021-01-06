@@ -25,7 +25,7 @@ public class QuickMove : Skill {
 
     void Update() {
         cooldownTimer += Time.deltaTime;
-        if (target.fade < 1f)
+        if (target.fade < 1f && cooldownTimer < 0.5 && !target.isDead)
             target.fade += Time.deltaTime * 1f;
         if (cooldownTimer >= duration && target.isInvincible) {
             endSkill();

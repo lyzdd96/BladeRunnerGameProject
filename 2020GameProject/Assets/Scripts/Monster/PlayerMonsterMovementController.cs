@@ -38,7 +38,6 @@ public class PlayerMonsterMovementController : MotionController
     void Update()
 	{
 
-
 		// check for destroying condition
 		if(monster.checkHP() && !isDestroyed)
         {
@@ -50,9 +49,6 @@ public class PlayerMonsterMovementController : MotionController
             monster.isDead = true;
 			// destroy(); // this monster will be called when the animation finished (using animation event setting)
         }
-
-
-
 	}
 
 
@@ -123,8 +119,11 @@ public class PlayerMonsterMovementController : MotionController
     }
 
     public void quickMove() {
+        // disable air dash due to bug
+        if (!monster.isGrounded) return;
         Vector2 move = Vector2.zero;
-        move.x = Random.Range(-1, 2) > 0 ? 1 : -1;
+        // always dash in the direction it's facing
+        move.x = monster.isFacingRight ? 1 : -1;
         // move.y = Random.Range(-1, 2) > 0 ? 1 : -1;
         quickMoveSkill.runSkill(move);
     }
