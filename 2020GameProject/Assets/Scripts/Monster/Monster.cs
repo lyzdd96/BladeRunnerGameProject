@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Monster : Character
 {
@@ -10,11 +11,20 @@ public class Monster : Character
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     
+	[Header("Events")]
+	[Space]
+	public UnityEvent OnLandEvent;
+
+	[System.Serializable]
+	public class BoolEvent : UnityEvent<bool> { }
+
     // Use this for initialization
     protected override void Start()
     {
         this.isFacingRight = false;
         this.healthPoint = monsterHP;
+        if (OnLandEvent == null)
+			OnLandEvent = new UnityEvent();
         base.Start();
     }
 
@@ -22,7 +32,6 @@ public class Monster : Character
     void FixedUpdate()
     {
         checkDie();
-        this.isGrounded = true;
     }
 
 
@@ -100,6 +109,11 @@ public class Monster : Character
         if (collision.gameObject.tag == "PlayerBullet")
         {
             this.getAttacked(1);
+        }
+
+        if (collision.gameObject.tag == "Ground" && !isGrounded) {
+            OnLandEvent.Invoke();
+            isGrounded = true;
         }
     }
      

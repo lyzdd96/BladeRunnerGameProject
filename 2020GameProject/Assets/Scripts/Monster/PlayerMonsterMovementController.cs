@@ -118,6 +118,7 @@ public class PlayerMonsterMovementController : MotionController
 
 
     public void jump() {
+        animator.SetBool("IsJumping", true);
         monster.Move(0f, false, true);
     }
 
@@ -134,7 +135,7 @@ public class PlayerMonsterMovementController : MotionController
 	/// </summary>
 	public override void OnLanding()
 	{
-		//animator.SetBool("IsJumping", false);
+		animator.SetBool("IsJumping", false);
 
 	}
 
