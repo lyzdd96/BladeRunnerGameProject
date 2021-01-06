@@ -89,6 +89,8 @@ public class PlayerMonsterAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // do not tick if already dead
+        if (!movementController.enabled) return;
         // Update our tree every frame
         _tree.Tick();
         //Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));

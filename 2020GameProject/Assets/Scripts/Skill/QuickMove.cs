@@ -25,7 +25,7 @@ public class QuickMove : Skill {
 
     void Update() {
         cooldownTimer += Time.deltaTime;
-        if (target.fade < 1f && cooldownTimer < 0.5 && !target.isDead)
+        if (target.fade < 1f && cooldownTimer < duration && !target.isDead)
             target.fade += Time.deltaTime * 1f;
         if (cooldownTimer >= duration && target.isInvincible) {
             endSkill();
@@ -83,5 +83,6 @@ public class QuickMove : Skill {
         target.isInvincible = false; // end of quickmove invincibility
 		target.GetComponent<CapsuleCollider2D>().enabled = true;
 		target.GetComponent<CircleCollider2D>().enabled = true;
+        target.fade = 1f;
     }
 }
