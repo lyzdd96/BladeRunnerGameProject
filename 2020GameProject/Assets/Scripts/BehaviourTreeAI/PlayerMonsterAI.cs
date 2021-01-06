@@ -14,7 +14,7 @@ public class PlayerMonsterAI : MonoBehaviour
     public float attackRange = 5f;  // the shooting range for this monster
     public float alertRange = 12f;  // the alerting range for this monster
 
-    float jumpCooldown = 2f;
+    float jumpCooldown = 1f;
     float jumpCooldownTimer = 0f;
 
     float shootingCooldown = 1f;
@@ -45,9 +45,11 @@ public class PlayerMonsterAI : MonoBehaviour
                         return raycasthit.collider.gameObject.tag.Contains("Player");
                     })
                     .Do("Jump", () => {
-                        Debug.Log("AI jump");
                         jumpCooldownTimer = 0f;
-                        movementController.jump();
+                        if (Random.Range(0f, 2f) > 1)
+                            movementController.jump();
+                        else
+                            movementController.quickMove();
                         return TaskStatus.Success;
                     })
                 .End()

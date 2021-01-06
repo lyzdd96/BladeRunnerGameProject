@@ -8,12 +8,15 @@ public class PlayerMonsterMovementController : MotionController
 	public Animator thisAnimator;
 	public float movingSpeed = 10f;
 
-	private GameFlowManager player;
+	private Player player;
 	private Monster monster;
 	private Vector3 currentPosition;
 	private Vector3 wanderDest = Vector3.zero;  // the current destination of wandering action
 	private bool isDestroyed = false; 
 
+    private Skill quickMoveSkill;
+
+    private float quickMoveCooldown = 2f;
 
 
     private void Start()
@@ -24,7 +27,9 @@ public class PlayerMonsterMovementController : MotionController
 		currentPosition = this.transform.position;
 
 		// get the player gameObject from the game flow manager
-		player = GameObject.Find("GameManager").GetComponent<GameFlowManager>();
+		player = GameObject.Find("GameManager").GetComponent<GameFlowManager>().getPlayer();
+
+        this.quickMoveSkill = gameObject.AddComponent<QuickMove>().SetQuickMove(null, quickMoveCooldown, monster, null, null);
 	}
 
 
@@ -40,16 +45,16 @@ public class PlayerMonsterMovementController : MotionController
 			isDestroyed = true;
 			// deactivate the monster moving sript
 			this.gameObject.GetComponent<PlayerMonsterAttackController>().enabled = false;
-			this.gameObject.GetComponent<PlayerMonsterMovementController>().enabled = false;
+			this.gameObject.GetComponent<PlayerMonsterAI>().enabled = false;
 			animator.SetTrigger("IsDying");
             monster.isDead = true;
-
 			// destroy(); // this monster will be called when the animation finished (using animation event setting)
         }
 
 
 
 	}
+
 
 	// used for physical updates
 	void FixedUpdate()
@@ -63,7 +68,6 @@ public class PlayerMonsterMovementController : MotionController
 
 		// use the monster speed to update the animator parameter
 		animator.SetFloat("Speed", Mathf.Abs(currentSpeed));
-
 	}
 
 
@@ -115,6 +119,13 @@ public class PlayerMonsterMovementController : MotionController
 
     public void jump() {
         monster.Move(0f, false, true);
+    }
+
+    public void quickMove() {
+        Vector2 move = Vector2.zero;
+        move.x = Random.Range(-1, 2) > 0 ? 1 : -1;
+        // move.y = Random.Range(-1, 2) > 0 ? 1 : -1;
+        quickMoveSkill.runSkill(move);
     }
 
 	/// <summary>

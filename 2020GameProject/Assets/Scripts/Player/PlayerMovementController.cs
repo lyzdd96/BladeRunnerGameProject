@@ -52,7 +52,7 @@ public class PlayerMovementController : MotionController
 			// update the fade value of player (dissolve effect)
 			if (player.fade < 1f && !isTeleporting)
             {
-				player.fade += Time.deltaTime * 1f;
+				// player.fade += Time.deltaTime * 1f;
 			}
             else
             {
@@ -113,7 +113,7 @@ public class PlayerMovementController : MotionController
 	}
 
 	void QuickMove() {
-		this.quickMoveSkill.runSkill();
+		this.quickMoveSkill.runSkill(new Vector2(player.isFacingRight ? 1 : -1, Input.GetAxisRaw("Vertical")));
 	}
 
 	// used for physical updates
@@ -154,6 +154,7 @@ public class PlayerMovementController : MotionController
 
 		// deactivate the player moving sript
 		this.player.gameObject.GetComponent<PlayerMovementController>().enabled = false;
+		this.player.gameObject.GetComponent<PlayerAttackController>().enabled = false;
 	}
 
 

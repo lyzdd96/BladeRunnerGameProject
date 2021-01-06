@@ -16,5 +16,5 @@ public abstract class Skill : MonoBehaviour {
     public virtual void createSkill(Transform transform) {}
 
     // Skill that doesn't need to spawn an Attack
-    public virtual void runSkill() {}
+    public virtual void runSkill(Vector2 move) {}
 }

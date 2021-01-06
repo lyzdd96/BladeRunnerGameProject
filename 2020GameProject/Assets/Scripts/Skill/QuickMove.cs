@@ -18,43 +18,45 @@ public class QuickMove : Skill {
         this.effect = effect;
         this.cameracontroller = cameracontroller;
         base.targets.Add(target);
-        movementcontroller = target.GetComponent<PlayerMovementController>();
+        movementcontroller = target.GetComponent<MotionController>();
         cooldownTimer = cooldown;
         return this;
     }
 
     void Update() {
         cooldownTimer += Time.deltaTime;
+        if (target.fade < 1f)
+            target.fade += Time.deltaTime * 1f;
         if (cooldownTimer >= duration && target.isInvincible) {
             endSkill();
         }
     }
 
-    public override void runSkill() { 
+    public override void runSkill(Vector2 move) { 
         if (cooldownTimer < cooldown) return;
-        float verticalMove = Input.GetAxisRaw("Vertical") * 5;
+        float verticalMove = move.y * 5;
         bool isJumping = false;
         bool isCrouching = false;
  
         float deltaAngle = verticalMove;
-        float backJumpForce = 4000f;
+        float JumpForce = 4000f;
 
         
-        Vector2 direction = new Vector2(Mathf.Cos(Mathf.Deg2Rad*deltaAngle) * backJumpForce, Mathf.Sin(Mathf.Deg2Rad*deltaAngle) * backJumpForce);
+        Vector2 direction = new Vector2(Mathf.Cos(Mathf.Deg2Rad*deltaAngle) * JumpForce, Mathf.Sin(Mathf.Deg2Rad*deltaAngle) * JumpForce);
 
-        if (!this.target.isFacingRight)
-            direction.x = direction.x * -1;
+        // if (!this.target.isFacingRight)
+            direction.x = direction.x * move.x;
         
        if (verticalMove > 0) {
             isJumping = true;
             // disable quickmove higher when in air
             direction.y = 0;
         }
-        target.Move(direction.x * Time.fixedDeltaTime, isCrouching, isJumping);
 
-        direction.x = 0;
+        // allow for dash jump when on ground
+        target.Move(0, isCrouching, isJumping);
+
         target.thisRB.AddForce(direction);
-
         ShowEffects(isJumping);
 
     }
@@ -65,12 +67,13 @@ public class QuickMove : Skill {
 		target.GetComponent<CapsuleCollider2D>().enabled = false;
 		target.GetComponent<CircleCollider2D>().enabled = false;
 		cooldownTimer = 0;
-		if (!((Player)target).isJumping && !isJumping) {
+		if (!isJumping) {
 			movementcontroller.animator.SetTrigger("Crouch");
 		} else {
             movementcontroller.animator.SetBool("IsJumping", true);
 			movementcontroller.animator.Play("Jump", 0, 0f);
 		}
+        if (!effect || !cameracontroller) return;
 		Instantiate(effect, target.transform.position, Quaternion.identity);
 		cameracontroller.ShakeCamera(0.5f, 0.005f);
     }
