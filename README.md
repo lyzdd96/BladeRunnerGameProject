@@ -17,3 +17,6 @@ https://docs.google.com/drawings/d/11N7p43N9j7gpOqtZnVNbPOSk9mR03U-K5DQ1SyRgL3s/
 
 ## Shaders and Effects
 https://docs.google.com/document/d/14b-tOU33PlzufKcC6e5A0HWH9K4zInkUeuOET1S8o1E/
+
+## Plot & Setting
+https://docs.google.com/document/d/1QZn8dZZAzQMf5e5NskX1UESpH8HBFmStIwbhXWWrNTs/
