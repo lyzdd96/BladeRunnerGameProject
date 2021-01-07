@@ -47,8 +47,14 @@ public abstract class Character : MonoBehaviour
 		}
 
 		if (isDead && fade >= 0f) {
-			fade -= Time.deltaTime;
+			fade -= Time.fixedDeltaTime;
 		}
+
+        if (isDead && fade < 0.1f) {
+            Debug.Log("player monster dead");
+            // a hack to fix IsDying animation event bugs for PlayerMonster
+            Destroy(gameObject);
+        }
 
         if (material != null)
 		    material.SetFloat("_Fade", fade);
